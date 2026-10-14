@@ -74,5 +74,5 @@ def load_pdf(path: Path) -> RawDocument:
                 if lines:
                     blocks.append(lines)
             pages.append(RawPage(number=page.number + 1, label=_clean_label(page.get_label()), blocks=blocks))
-        toc = [TocEntry(level, title.strip(), page) for level, title, page in doc.get_toc() if page >= 1 and title.strip()]
+        toc = [TocEntry(level, " ".join(title.split()), page) for level, title, page in doc.get_toc() if page >= 1 and title.strip()]
     return RawDocument(pages=pages, toc=toc)

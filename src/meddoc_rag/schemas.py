@@ -79,3 +79,12 @@ class Chunk(BaseModel):
     page_end: int
     section: str | None
     n_tokens: int
+
+
+class RetrievedChunk(BaseModel):
+    """A chunk returned by a retriever, with its score and 1-based rank."""
+
+    chunk: Chunk
+    score: float
+    rank: int
+    retriever: str

@@ -16,6 +16,7 @@ import time
 from meddoc_rag.config import settings
 from meddoc_rag.ingestion.chunkers import STRATEGIES, HFTokenCounter
 from meddoc_rag.ingestion.document import parse_document
+from meddoc_rag.io import write_chunks
 from meddoc_rag.manifest import load_manifest
 from meddoc_rag.schemas import Chunk, ParsedDocument
 
@@ -45,9 +46,7 @@ def chunk_stats(chunks: list[Chunk], docs: dict[str, ParsedDocument], limit: int
 
 def main() -> int:
     parsed_dir = settings.processed_dir / "parsed"
-    chunk_dir = settings.processed_dir / "chunks"
     parsed_dir.mkdir(parents=True, exist_ok=True)
-    chunk_dir.mkdir(parents=True, exist_ok=True)
 
     docs: dict[str, ParsedDocument] = {}
     print(f"{'doc':32} {'pages':>5} {'chars':>8} {'headings':>8} source")
@@ -68,9 +67,7 @@ def main() -> int:
         t0 = time.perf_counter()
         chunks = [c for d in docs.values() for c in chunker.chunk(d)]
         elapsed = time.perf_counter() - t0
-        with (chunk_dir / f"{name}.jsonl").open("w", encoding="utf-8") as f:
-            for c in chunks:
-                f.write(c.model_dump_json() + "\n")
+        write_chunks(settings.chunks_path(name), chunks)
         rows[name] = chunk_stats(chunks, docs, limit=512) | {"seconds": elapsed}
 
     keys = list(next(iter(rows.values())))

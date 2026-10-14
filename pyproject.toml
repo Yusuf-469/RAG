@@ -15,6 +15,9 @@ dependencies = [
     "requests>=2.32,<3",
     "pymupdf>=1.24,<2",
     "tokenizers>=0.19,<1",
+    "numpy>=1.26,<3",
+    "faiss-cpu>=1.8,<2",
+    "sentence-transformers>=5.0,<6",
 ]
 
 [project.optional-dependencies]

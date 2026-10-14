@@ -20,10 +20,18 @@ class Settings(BaseSettings):
 
     # Embedding model; its tokenizer also defines chunk length (bge-small truncates at 512 tokens).
     embedding_model: str = "BAAI/bge-small-en-v1.5"
+    # bge is trained asymmetrically: queries get this instruction, passages get none.
+    query_instruction: str = "Represent this sentence for searching relevant passages: "
+    embed_batch_size: int = 32
+    device: str = "cpu"
 
     # Chunking
     chunk_max_tokens: int = 256
     chunk_overlap_tokens: int = 32
+    chunk_strategy: str = "section"
+
+    # Retrieval
+    top_k: int = 5
 
     @property
     def manifest_path(self) -> Path:
@@ -39,6 +47,16 @@ class Settings(BaseSettings):
     def processed_dir(self) -> Path:
         """Chunks, indexes and caches (gitignored)."""
         return self.data_dir / "processed"
+
+    def chunks_path(self, strategy: str) -> Path:
+        return self.processed_dir / "chunks" / f"{strategy}.jsonl"
+
+    def index_dir(self, strategy: str) -> Path:
+        return self.processed_dir / "index" / strategy
+
+    @property
+    def embedding_cache_path(self) -> Path:
+        return self.processed_dir / "embedding_cache.sqlite"
 
 
 settings = Settings()
