@@ -1,0 +1,99 @@
+# Source documents for the MedDoc RAG corpus.
+#
+# PDFs are NOT committed (licensing + repo size). `scripts/download_docs.py`
+# rebuilds data/raw/ from this file and verifies each file's SHA-256, so every
+# eval number is tied to the exact bytes that were indexed.
+#
+# manual: true  -> the publisher blocks scripted downloads; open `source_page`
+#                  in a browser, save the PDF as data/raw/<filename>, and the
+#                  script will still verify the checksum.
+# sha256: null  -> not pinned yet; the script prints the hash to paste in.
+
+documents:
+  - id: who_hypertension_2021
+    title: Guideline for the pharmacological treatment of hypertension in adults
+    publisher: WHO
+    year: 2021
+    license: CC BY-NC-SA 3.0 IGO
+    source_page: https://iris.who.int/handle/10665/344424
+    url: https://iris.who.int/server/api/core/bitstreams/f062769d-f075-4a00-87af-0a2106e0bd04/content
+    filename: who_hypertension_2021.pdf
+    manual: false
+    sha256: 57f6376d5c9bc4ea6c44873625547c8a5443d5a6ad8c8c422733681563db05fb
+
+  - id: who_physical_activity_2020
+    title: WHO guidelines on physical activity and sedentary behaviour
+    publisher: WHO
+    year: 2020
+    license: CC BY-NC-SA 3.0 IGO
+    source_page: https://iris.who.int/handle/10665/336656
+    url: https://iris.who.int/server/api/core/bitstreams/faa83413-d89e-4be9-bb01-b24671aef7ca/content
+    filename: who_physical_activity_2020.pdf
+    manual: false
+    sha256: 50b66c44e7083cc3752849f301ae1d60d9360d511e34c0c948b39bdf6e13dc88
+
+  - id: who_sugars_2015
+    title: "Guideline: Sugars intake for adults and children"
+    publisher: WHO
+    year: 2015
+    license: CC BY-NC-SA 3.0 IGO
+    source_page: https://iris.who.int/handle/10665/149782
+    url: https://iris.who.int/server/api/core/bitstreams/4be74f01-de93-4596-bbd1-02a97afb1221/content
+    filename: who_sugars_2015.pdf
+    manual: false
+    sha256: 0e81d49cffe12469c184a9d377c9ff80fa26f1f08d66b42fed40f1054b67b209
+
+  - id: usda_dietary_guidelines_2020
+    title: Dietary Guidelines for Americans, 2020-2025
+    publisher: USDA/HHS
+    year: 2020
+    license: Public domain (US Government work)
+    source_page: https://www.dietaryguidelines.gov/2020-2025-dietary-guidelines
+    url: https://www.dietaryguidelines.gov/sites/default/files/2020-12/Dietary_Guidelines_for_Americans_2020-2025.pdf
+    filename: usda_dietary_guidelines_2020.pdf
+    manual: false
+    sha256: ceea04ce1a7c13a95a170f3548ed3926ad6dd49599bd730fb58bc9c02711d16e
+
+  - id: cdc_opioids_2022
+    title: CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022
+    publisher: CDC (MMWR)
+    year: 2022
+    license: Public domain (US Government work)
+    source_page: https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm
+    url: https://www.cdc.gov/mmwr/volumes/71/rr/pdfs/rr7103a1-H.pdf
+    filename: cdc_opioids_2022.pdf
+    manual: true
+    sha256: null
+
+  - id: nhlbi_asthma_2020
+    title: 2020 Focused Updates to the Asthma Management Guidelines
+    publisher: NIH/NHLBI
+    year: 2020
+    license: Public domain (US Government work)
+    source_page: https://www.nhlbi.nih.gov/resources/2020-focused-updates-asthma-management-guidelines
+    url: https://www.nhlbi.nih.gov/sites/default/files/publications/FINAL%20508%20version_AsthmaManagementGuidelinesReport%2012-1-20.pdf
+    filename: nhlbi_asthma_2020.pdf
+    manual: false
+    sha256: a211aa3f49f139d60cd6aa9fb66ca9f8c3406e85d09489399c76f55abe30a32f
+
+  - id: cdc_isolation_2007
+    title: 2007 Guideline for Isolation Precautions
+    publisher: CDC (HICPAC)
+    year: 2007
+    license: Public domain (US Government work)
+    source_page: https://www.cdc.gov/infection-control/hcp/isolation-precautions/index.html
+    url: https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf
+    filename: cdc_isolation_2007.pdf
+    manual: true
+    sha256: null
+
+  - id: cdc_hand_hygiene_2002
+    title: Guideline for Hand Hygiene in Health-Care Settings
+    publisher: CDC (MMWR)
+    year: 2002
+    license: Public domain (US Government work)
+    source_page: https://www.cdc.gov/mmwr/PDF/rr/rr5116.pdf
+    url: https://www.cdc.gov/mmwr/PDF/rr/rr5116.pdf
+    filename: cdc_hand_hygiene_2002.pdf
+    manual: true
+    sha256: null
