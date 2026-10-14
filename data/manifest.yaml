@@ -63,7 +63,7 @@ documents:
     url: https://www.cdc.gov/mmwr/volumes/71/rr/pdfs/rr7103a1-H.pdf
     filename: cdc_opioids_2022.pdf
     manual: true
-    sha256: null
+    sha256: f4e5098d13e9b3dc5cc27bb90137df57d3667350b2add885fd367f279402d18d
 
   - id: nhlbi_asthma_2020
     title: 2020 Focused Updates to the Asthma Management Guidelines
@@ -85,15 +85,16 @@ documents:
     url: https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf
     filename: cdc_isolation_2007.pdf
     manual: true
-    sha256: null
+    sha256: b613754256f54883345213c85c379bb7178c1f4d26d774915deaa91aa59c0508
 
   - id: cdc_hand_hygiene_2002
     title: Guideline for Hand Hygiene in Health-Care Settings
     publisher: CDC (MMWR)
     year: 2002
     license: Public domain (US Government work)
-    source_page: https://www.cdc.gov/mmwr/PDF/rr/rr5116.pdf
+    # Pinned file was saved from CDC as guideline-hand-hygiene-p.pdf (same MMWR RR-16 report, 56 pp).
+    source_page: https://www.cdc.gov/handhygiene/providers/guideline.html
     url: https://www.cdc.gov/mmwr/PDF/rr/rr5116.pdf
     filename: cdc_hand_hygiene_2002.pdf
     manual: true
-    sha256: null
+    sha256: b57cffd78be3694001a553fd4352ee85b41d3e3e6a23ea3daf22f4fbed9a82c3
