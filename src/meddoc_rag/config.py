@@ -18,6 +18,13 @@ class Settings(BaseSettings):
 
     data_dir: Path = PROJECT_ROOT / "data"
 
+    # Embedding model; its tokenizer also defines chunk length (bge-small truncates at 512 tokens).
+    embedding_model: str = "BAAI/bge-small-en-v1.5"
+
+    # Chunking
+    chunk_max_tokens: int = 256
+    chunk_overlap_tokens: int = 32
+
     @property
     def manifest_path(self) -> Path:
         """YAML list of source documents (URL, checksum, license)."""
