@@ -63,3 +63,54 @@ def test_answerable_requires_evidence(tmp_path: Path) -> None:
     bad.write_text('{"id": "x", "type": "fact", "answerable": true, "question": "q", "evidence": []}\n', encoding="utf-8")
     with pytest.raises(ValueError, match="need evidence"):
         load_golden(bad)
+
+
+def test_extract_json_tolerates_fences_think_and_prose() -> None:
+    from meddoc_rag.evaluation.judge import extract_json
+
+    assert extract_json('```json\n{"verdict": "correct", "reason": "ok"}\n```') == {"verdict": "correct", "reason": "ok"}
+    assert extract_json('<think>{"x": 1} hmm</think> Sure! {"claims": []} done') == {"claims": []}
+    assert extract_json('{"a": {"b": 2}}') == {"a": {"b": 2}}
+    assert extract_json("no json here") is None
+    assert extract_json('{"broken": ') is None
+
+
+class _FakeJudgeLLM:
+    provider, model = "fake", "judge"
+
+    def __init__(self, text: str) -> None:
+        self.text = text
+
+    def generate(self, messages, temperature=0.0, max_tokens=600):
+        from meddoc_rag.generation.llm import LLMResponse
+        return LLMResponse(text=self.text, model="judge")
+
+
+def test_faithfulness_score_and_parse_failure() -> None:
+    from meddoc_rag.evaluation.judge import Judge
+
+    j = Judge(_FakeJudgeLLM('{"claims": [{"claim": "a", "supported": true}, {"claim": "b", "supported": false}]}'))
+    f = j.faithfulness("answer", [])
+    assert f.score == 0.5 and not f.parse_error
+    bad = Judge(_FakeJudgeLLM("I think it's fine")).faithfulness("answer", [])
+    assert bad.parse_error and bad.score is None
+
+
+def test_correctness_rejects_unknown_verdicts() -> None:
+    from meddoc_rag.evaluation.judge import Judge
+
+    assert Judge(_FakeJudgeLLM('{"verdict": "correct", "reason": "r"}')).correctness("q", "ref", "a").verdict == "correct"
+    assert Judge(_FakeJudgeLLM('{"verdict": "mostly right"}')).correctness("q", "ref", "a").parse_error
+
+
+def test_threshold_sweep_and_choice() -> None:
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("gen_eval", PROJECT_ROOT / "eval" / "run_generation_eval.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    scores = {"a1": 0.99, "a2": 0.8, "o1": 0.05, "o2": 0.001}
+    rows = mod.sweep(scores, {"a1": True, "a2": True, "o1": False, "o2": False})
+    best = {r["threshold"]: r["balanced_accuracy"] for r in rows}
+    assert best[0.5] == 1.0 and best[0.001] == 0.5
+    assert 0.1 <= mod.choose_threshold(rows) <= 0.8   # middle of the perfect-separation range

@@ -1,0 +1,1610 @@
+{
+  "meta": {
+    "timestamp": "20261015-203918",
+    "retriever": "dense+rerank",
+    "chunking": "section",
+    "generator": "openai/gpt-oss-120b",
+    "judge": "qwen/qwen3.8-27b",
+    "context_chunks": 5
+  },
+  "summary": {
+    "threshold": 0.5,
+    "n_answerable": 48,
+    "n_out_of_scope": 11,
+    "answer_rate_answerable": 1.0,
+    "refusal_rate_out_of_scope": 1.0,
+    "correct_rate_answerable": 0.9375,
+    "correct_or_partial_rate_answerable": 1.0,
+    "incorrect_count": 0,
+    "faithfulness_mean": 0.96875,
+    "fully_faithful_rate": 0.9375,
+    "answers_with_invalid_citations": 0,
+    "judge_parse_errors": 0,
+    "generation_ms_p50": 1533.0695999982709,
+    "refusal_reasons": {
+      "low_retrieval_confidence": 7,
+      "llm_insufficient_context": 4,
+      "no_valid_citations": 0
+    }
+  },
+  "sweep": [
+    {
+      "threshold": 0.001,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.18181818181818182,
+      "balanced_accuracy": 0.5909090909090909
+    },
+    {
+      "threshold": 0.005,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.18181818181818182,
+      "balanced_accuracy": 0.5909090909090909
+    },
+    {
+      "threshold": 0.01,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.18181818181818182,
+      "balanced_accuracy": 0.5909090909090909
+    },
+    {
+      "threshold": 0.02,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.18181818181818182,
+      "balanced_accuracy": 0.5909090909090909
+    },
+    {
+      "threshold": 0.05,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.18181818181818182,
+      "balanced_accuracy": 0.5909090909090909
+    },
+    {
+      "threshold": 0.1,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.36363636363636365,
+      "balanced_accuracy": 0.6818181818181819
+    },
+    {
+      "threshold": 0.2,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.5454545454545454,
+      "balanced_accuracy": 0.7727272727272727
+    },
+    {
+      "threshold": 0.3,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.6363636363636364,
+      "balanced_accuracy": 0.8181818181818181
+    },
+    {
+      "threshold": 0.4,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.6363636363636364,
+      "balanced_accuracy": 0.8181818181818181
+    },
+    {
+      "threshold": 0.5,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.6363636363636364,
+      "balanced_accuracy": 0.8181818181818181
+    },
+    {
+      "threshold": 0.6,
+      "answer_rate_answerable": 1.0,
+      "refusal_rate_oos": 0.7272727272727273,
+      "balanced_accuracy": 0.8636363636363636
+    },
+    {
+      "threshold": 0.7,
+      "answer_rate_answerable": 0.9791666666666666,
+      "refusal_rate_oos": 0.7272727272727273,
+      "balanced_accuracy": 0.853219696969697
+    },
+    {
+      "threshold": 0.8,
+      "answer_rate_answerable": 0.9583333333333334,
+      "refusal_rate_oos": 0.7272727272727273,
+      "balanced_accuracy": 0.8428030303030303
+    },
+    {
+      "threshold": 0.9,
+      "answer_rate_answerable": 0.9375,
+      "refusal_rate_oos": 0.7272727272727273,
+      "balanced_accuracy": 0.8323863636363636
+    },
+    {
+      "threshold": 0.95,
+      "answer_rate_answerable": 0.9375,
+      "refusal_rate_oos": 1.0,
+      "balanced_accuracy": 0.96875
+    },
+    {
+      "threshold": 0.99,
+      "answer_rate_answerable": 0.8333333333333334,
+      "refusal_rate_oos": 1.0,
+      "balanced_accuracy": 0.9166666666666667
+    }
+  ],
+  "records": [
+    {
+      "id": "htn-01",
+      "type": "number",
+      "answerable": true,
+      "question": "At what blood pressure does WHO recommend starting antihypertensive drug treatment?",
+      "top_score": 0.999506683346407,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "WHO recommends initiating pharmacological antihypertensive treatment in adults with a confirmed diagnosis of hypertension when systolic blood pressure is ≥ 140 mmHg or diastolic blood pressure is ≥ 90 mmHg [2]. For individuals who have existing cardiovascular disease, WHO also recommends treatment when systolic blood pressure is 130–139 mmHg [1][2]. WHO suggests the same 130–139 mmHg systolic threshold for people without cardiovascular disease but who have high cardiovascular risk, diabetes mellitus, or chronic kidney disease [1][2].",
+      "citations": [
+        "Guideline for the pharmacological treatment of hypertension in adults, pp.18-19",
+        "Guideline for the pharmacological treatment of hypertension in adults, pp.9-10"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 643.9234999998007,
+        "generation": 0.0,
+        "total": 644.7776999993948
+      },
+      "reference_answer": "In people with confirmed hypertension, start drug treatment at systolic ≥140 mmHg or diastolic ≥90 mmHg.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states the primary threshold of systolic ≥140 mmHg or diastolic ≥90 mmHg as per the reference and provides additional accurate details regarding lower thresholds for high-risk patients."
+    },
+    {
+      "id": "htn-02",
+      "type": "fact",
+      "answerable": true,
+      "question": "Which drug classes does WHO recommend as first-line treatment for hypertension?",
+      "top_score": 0.9999439518686409,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "WHO recommends that adults with hypertension start treatment with drugs from any of the following three classes: thiazide or thiazide‐like diuretics, angiotensin‐converting enzyme inhibitors (ACE‐is) or angiotensin‐receptor blockers (ARBs), and long‐acting dihydropyridine calcium‐channel blockers (CCBs)[1][2].",
+      "citations": [
+        "Guideline for the pharmacological treatment of hypertension in adults, p.10",
+        "Guideline for the pharmacological treatment of hypertension in adults, p.23"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 666.6914999987057,
+        "generation": 0.0,
+        "total": 667.2123999996984
+      },
+      "reference_answer": "Thiazide and thiazide-like diuretics, ACE inhibitors/ARBs, and long-acting dihydropyridine calcium channel blockers.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately lists the three specific drug classes recommended by WHO as first-line treatment, matching the reference answer."
+    },
+    {
+      "id": "htn-03",
+      "type": "number",
+      "answerable": true,
+      "question": "What blood pressure target does WHO recommend for people with hypertension who have no comorbidities?",
+      "top_score": 0.9998147223254369,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "WHO recommends a target blood pressure of <140/90 mmHg for patients with hypertension who have no comorbidities[1][2].",
+      "citations": [
+        "Guideline for the pharmacological treatment of hypertension in adults, p.28",
+        "Guideline for the pharmacological treatment of hypertension in adults, pp.10-11"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 656.8530999975337,
+        "generation": 0.0,
+        "total": 657.4642999985372
+      },
+      "reference_answer": "Below 140/90 mmHg.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately states the WHO recommended blood pressure target of <140/90 mmHg for patients with hypertension and no comorbidities, matching the reference answer."
+    },
+    {
+      "id": "htn-04",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "After someone starts or changes their blood pressure pills, how often should they come back for a check-up?",
+      "top_score": 0.6115409832681803,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "WHO recommends a follow‐up visit each month after starting or changing antihypertensive medication until the patient reaches the blood‐pressure target [1][3][4][5]. Once the target is achieved and blood pressure is stable, follow‐up can be spaced to every 3–6 months [1][3][4][5].",
+      "citations": [
+        "Guideline for the pharmacological treatment of hypertension in adults, pp.29-30",
+        "Guideline for the pharmacological treatment of hypertension in adults, pp.10-11",
+        "Guideline for the pharmacological treatment of hypertension in adults, p.38",
+        "Guideline for the pharmacological treatment of hypertension in adults, p.30"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 661.7589000015869,
+        "generation": 6570.804000002681,
+        "total": 7239.39810000229
+      },
+      "reference_answer": "Monthly until they reach the blood pressure target (then every 3-6 months once controlled).",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately reflects the reference answer's recommendation for monthly follow-ups until the target is reached and every 3-6 months once controlled."
+    },
+    {
+      "id": "htn-05",
+      "type": "fact",
+      "answerable": true,
+      "question": "Can pharmacists or nurses provide drug treatment for hypertension according to WHO?",
+      "top_score": 0.9996377464576096,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Yes, WHO states that pharmacists and nurses may provide pharmacological treatment for hypertension, provided they have proper training, prescribing authority, specific management protocols and physician oversight[1][2].",
+      "citations": [
+        "Guideline for the pharmacological treatment of hypertension in adults, p.11",
+        "Guideline for the pharmacological treatment of hypertension in adults, p.31"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 543.7014999988605,
+        "generation": 0.0,
+        "total": 544.2118999999366
+      },
+      "reference_answer": "Yes, if they have proper training, prescribing authority, specific management protocols and physician oversight.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately reflects the reference answer, including all necessary conditions such as training, authority, protocols, and oversight."
+    },
+    {
+      "id": "htn-06",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "Should doctors wait for lab results before starting someone on blood pressure medication?",
+      "top_score": 0.8131877956337173,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Doctors should not delay starting antihypertensive therapy while waiting for laboratory results if the testing would postpone treatment; testing should be performed only when it does not delay initiation[1]. In settings where testing is not feasible, treatment should begin promptly and labs can be obtained later[1]. If blood pressure is markedly elevated (≥160 mmHg systolic or ≥100 mmHg diastolic) or there is end‐organ damage, therapy should be started without delay[2]. Basic tests (electrolytes, creatinine, lipids, glucose/HbA1C, urine dipstick, ECG) are recommended but only as long as they do not impede treatment[3].",
+      "citations": [
+        "Guideline for the pharmacological treatment of hypertension in adults, pp.20-21",
+        "Guideline for the pharmacological treatment of hypertension in adults, p.19",
+        "Guideline for the pharmacological treatment of hypertension in adults, p.38"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 483.6509000015212,
+        "generation": 1242.2669999978098,
+        "total": 1732.1526000014273
+      },
+      "reference_answer": "No; tests for comorbidities and secondary hypertension are suggested only when they do not delay or impede starting treatment.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that doctors should not wait for lab results if it delays treatment, aligning with the reference answer's key point that tests should not impede starting therapy."
+    },
+    {
+      "id": "htn-07",
+      "type": "fact",
+      "answerable": true,
+      "question": "Why does WHO prefer a single-pill combination when starting combination therapy for hypertension?",
+      "top_score": 0.9989562610817863,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "WHO prefers a single‐pill combination because it improves medication‐taking adherence and persistence, which in turn enhances blood‐pressure control[1]. The guideline notes that using a single‐pill formulation “to improve adherence and persistence” is a key reason for recommending it as the initial combination therapy[2].",
+      "citations": [
+        "Guideline for the pharmacological treatment of hypertension in adults, pp.25-26",
+        "Guideline for the pharmacological treatment of hypertension in adults, p.10"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 539.608800001588,
+        "generation": 0.0,
+        "total": 540.2083000008133
+      },
+      "reference_answer": "To improve adherence and persistence.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly identifies improving adherence and persistence as the reason, matching the reference answer."
+    },
+    {
+      "id": "pa-01",
+      "type": "number",
+      "answerable": true,
+      "question": "How much physical activity should children and adolescents do each day?",
+      "top_score": 0.9999425827356626,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Children and and adolescents should do at least an average of 60 minutes per day of moderate‐to‐vigorous‐intensity, mostly aerobic, physical activity across the week[1][2][3][4].",
+      "citations": [
+        "WHO guidelines on physical activity and sedentary behaviour, pp.10-11",
+        "WHO guidelines on physical activity and sedentary behaviour, p.35",
+        "WHO guidelines on physical activity and sedentary behaviour, p.20",
+        "WHO guidelines on physical activity and sedentary behaviour, p.70"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 494.71859999903245,
+        "generation": 0.0,
+        "total": 495.25829999765847
+      },
+      "reference_answer": "At least an average of 60 minutes per day of moderate- to vigorous-intensity, mostly aerobic, activity across the week.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately reflects the reference answer regarding the duration and intensity of physical activity for children and adolescents."
+    },
+    {
+      "id": "pa-02",
+      "type": "fact",
+      "answerable": true,
+      "question": "What type of activity should older adults do on 3 or more days a week to prevent falls?",
+      "top_score": 0.9999466418466447,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Older adults should do varied multicomponent physical activity that emphasizes functional balance and strength training at moderate‐or‐greater intensity on three or more days each week to enhance functional capacity and prevent falls[1][3][4][5].",
+      "citations": [
+        "WHO guidelines on physical activity and sedentary behaviour, p.53",
+        "WHO guidelines on physical activity and sedentary behaviour, p.14",
+        "WHO guidelines on physical activity and sedentary behaviour, p.18",
+        "WHO guidelines on physical activity and sedentary behaviour, p.71"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 555.3025000008347,
+        "generation": 0.0,
+        "total": 555.818900000304
+      },
+      "reference_answer": "Varied multicomponent physical activity emphasising functional balance and strength training at moderate or greater intensity, on 3 or more days a week.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately reflects the reference answer by specifying varied multicomponent physical activity emphasizing functional balance and strength training at moderate or greater intensity on 3 or more days a week."
+    },
+    {
+      "id": "pa-03",
+      "type": "regression",
+      "answerable": true,
+      "question": "How many minutes of moderate-intensity aerobic activity per week should adults aged 18 to 64 do?",
+      "top_score": 0.9997939635245261,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Adults aged 18–64 should do at least 150 to 300 minutes of moderate‐intensity aerobic physical activity each week[1][3].",
+      "citations": [
+        "WHO guidelines on physical activity and sedentary behaviour, pp.11-12",
+        "WHO guidelines on physical activity and sedentary behaviour, pp.41-42"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 537.349300000642,
+        "generation": 0.0,
+        "total": 537.8170000003593
+      },
+      "reference_answer": "At least 150-300 minutes of moderate-intensity (or 75-150 minutes of vigorous-intensity) aerobic activity per week.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states the recommended 150-300 minutes of moderate-intensity aerobic activity per week, which aligns with the key facts in the reference answer."
+    },
+    {
+      "id": "pa-04",
+      "type": "confusable",
+      "answerable": true,
+      "question": "Can a woman keep doing vigorous workouts while expecting a baby?",
+      "top_score": 0.9886165032999901,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Yes. Women who habitually performed vigorous‐intensity aerobic or other vigorous activity before pregnancy may continue those workouts during pregnancy, provided they have no contraindications and consult their health‐care provider [1][2][5]. They should still follow safety precautions such as avoiding excessive heat, staying hydrated, not exercising in a supine position after the first trimester, and seeking specialist supervision for any activity that exceeds the usual recommendations [4].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, p.132",
+        "WHO guidelines on physical activity and sedentary behaviour, pp.15-16",
+        "WHO guidelines on physical activity and sedentary behaviour, p.57",
+        "WHO guidelines on physical activity and sedentary behaviour, p.58"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 545.3273000021,
+        "generation": 0.0,
+        "total": 545.9315000007336
+      },
+      "reference_answer": "Yes; women who habitually did vigorous activity before pregnancy can continue during pregnancy (and postpartum).",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that women who habitually performed vigorous activity before pregnancy can continue during pregnancy, which aligns with the reference answer, and adds appropriate safety context without contradicting the core fact."
+    },
+    {
+      "id": "pa-05",
+      "type": "fact",
+      "answerable": true,
+      "question": "What does WHO say about recreational screen time for children and adolescents living with disability?",
+      "top_score": 0.9989143225025487,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The WHO recommends that children and adolescents living with disability should limit the amount of time they spend being sedentary, especially the amount of recreational screen time[1][2][4]. This is a strong recommendation based on low‐certainty evidence.",
+      "citations": [
+        "WHO guidelines on physical activity and sedentary behaviour, pp.21-22",
+        "WHO guidelines on physical activity and sedentary behaviour, p.74",
+        "WHO guidelines on physical activity and sedentary behaviour, p.74"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 570.5314000006183,
+        "generation": 0.0,
+        "total": 571.004699999321
+      },
+      "reference_answer": "They should limit sedentary time, particularly recreational screen time.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately conveys the key fact that WHO recommends limiting sedentary time, particularly recreational screen time, for this population."
+    },
+    {
+      "id": "pa-06",
+      "type": "number",
+      "answerable": true,
+      "question": "How often should adults with chronic conditions do muscle-strengthening activities?",
+      "top_score": 0.9998982834878326,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Adults with chronic conditions should perform muscle‐strengthening activities at moderate or greater intensity that involve all major muscle groups on two or more days each week[1][2].",
+      "citations": [
+        "WHO guidelines on physical activity and sedentary behaviour, p.18",
+        "WHO guidelines on physical activity and sedentary behaviour, pp.62-63"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 541.293999998743,
+        "generation": 0.0,
+        "total": 541.9426999978896
+      },
+      "reference_answer": "On 2 or more days a week, at moderate or greater intensity, involving all major muscle groups.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately conveys all key facts from the reference: frequency (2 or more days a week), intensity (moderate or greater), and scope (all major muscle groups)."
+    },
+    {
+      "id": "sug-01",
+      "type": "confusable",
+      "answerable": true,
+      "question": "What is the maximum intake of free sugars recommended by WHO?",
+      "top_score": 0.9977230875410096,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "WHO recommends that free sugars be limited to less than 10 % of total energy intake [1][2][3][4]. It also suggests a further reduction to below 5 % of total energy intake as a conditional recommendation [1][2][3][4][5].",
+      "citations": [
+        "Guideline: Sugars intake for adults and children, p.24",
+        "Guideline: Sugars intake for adults and children, pp.11-12",
+        "Guideline: Sugars intake for adults and children, p.12",
+        "Guideline: Sugars intake for adults and children, p.24",
+        "Guideline: Sugars intake for adults and children, pp.24-25"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 514.8470999993151,
+        "generation": 0.0,
+        "total": 515.3892999987875
+      },
+      "reference_answer": "Less than 10% of total energy intake, for adults and children.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states the maximum recommended intake of less than 10% of total energy intake and includes the additional conditional recommendation of 5%, which is accurate and consistent with the reference."
+    },
+    {
+      "id": "sug-02",
+      "type": "number",
+      "answerable": true,
+      "question": "What further reduction in free sugars intake does WHO suggest beyond the main recommendation?",
+      "top_score": 0.9991052415790356,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "WHO suggests a further reduction of free‐sugar intake to below 5 % of total energy intake (conditional recommendation) [1][2][3][4].",
+      "citations": [
+        "Guideline: Sugars intake for adults and children, p.24",
+        "Guideline: Sugars intake for adults and children, pp.11-12",
+        "Guideline: Sugars intake for adults and children, pp.24-25",
+        "Guideline: Sugars intake for adults and children, p.13"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 551.6423000008217,
+        "generation": 0.0,
+        "total": 552.1217999994406
+      },
+      "reference_answer": "Below 5% of total energy intake (conditional recommendation).",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately states the specific reduction target (below 5% of total energy intake) and the recommendation strength (conditional) as per the reference."
+    },
+    {
+      "id": "sug-03",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "Does the sugar in fruit juice count as free sugar?",
+      "top_score": 0.9951545834301623,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Yes, the sugars naturally present in fruit juice are classified as free sugars[1][2].",
+      "citations": [
+        "Guideline: Sugars intake for adults and children, p.15",
+        "Guideline: Sugars intake for adults and children, pp.11-12"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 518.7296000003698,
+        "generation": 0.0,
+        "total": 519.1861999992398
+      },
+      "reference_answer": "Yes; free sugars include sugars naturally present in fruit juices and fruit juice concentrates.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that sugars in fruit juice are classified as free sugars, which aligns with the reference answer."
+    },
+    {
+      "id": "sug-04",
+      "type": "fact",
+      "answerable": true,
+      "question": "What quality of evidence supports the WHO recommendation to keep free sugars below 10% of energy?",
+      "top_score": 0.9993910378607432,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The WHO recommendation to limit free‐sugar intake to less than 10 % of total energy is based on moderate‐quality evidence (from observational studies of dental caries)[3][4].",
+      "citations": [
+        "Guideline: Sugars intake for adults and children, p.12",
+        "Guideline: Sugars intake for adults and children, p.24"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 544.9837999985903,
+        "generation": 0.0,
+        "total": 545.4960999995819
+      },
+      "reference_answer": "Moderate quality evidence from observational studies of dental caries.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately identifies the evidence quality as moderate and correctly attributes it to observational studies of dental caries, matching the reference."
+    },
+    {
+      "id": "dga-01",
+      "type": "confusable",
+      "answerable": true,
+      "question": "What limit on added sugars do the Dietary Guidelines for Americans set?",
+      "top_score": 0.9994765489740651,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The Dietary Guidelines for Americans set a limit of less than 10 percent of total daily calories from added sugars [1][3].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, pp.54-55",
+        "Dietary Guidelines for Americans, 2020-2025, p.54"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 552.233200000046,
+        "generation": 0.0,
+        "total": 552.7216999980737
+      },
+      "reference_answer": "Less than 10 percent of calories per day starting at age 2 (and avoid added sugars before age 2).",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "partial",
+      "correctness_reason": "The candidate correctly states the 10% limit but omits the specific age threshold (starting at age 2) and the recommendation to avoid added sugars before age 2."
+    },
+    {
+      "id": "dga-02",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "Is it okay to give a toddler under two foods with added sugar?",
+      "top_score": 0.9793905836935393,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "No, toddlers younger than age 2 should not be given foods that contain added sugars. Infants and young children have virtually no room in their diet for added sugars because their nutrient needs are high relative to the small amount of complementary foods they eat, and added‐sugar foods can displace nutrient‐dense options[3]. Sugar‐sweetened beverages and other products with added sugars are specifically advised against for children under two[1].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, p.74",
+        "Dietary Guidelines for Americans, 2020-2025, p.75"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 602.7833000007377,
+        "generation": 0.0,
+        "total": 603.4048000001349
+      },
+      "reference_answer": "No; avoid foods and beverages with added sugars for children younger than 2.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that foods with added sugars should be avoided for children under two, aligning perfectly with the reference answer."
+    },
+    {
+      "id": "dga-03",
+      "type": "number",
+      "answerable": true,
+      "question": "What is the daily sodium limit in the Dietary Guidelines for Americans?",
+      "top_score": 0.9967626768103587,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The Dietary Guidelines for Americans set a general limit of less than 2,300 milligrams of sodium per day for the overall population [2]. For children, the limit is lower: 1,200 mg/day for ages 1‐3, 1,500 mg/day for ages 4‐8, 1,800 mg/day for ages 9‐13, and 2,300 mg/day for all older age groups [3].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, pp.31-32",
+        "Dietary Guidelines for Americans, 2020-2025, p.59"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 585.5281000003743,
+        "generation": 0.0,
+        "total": 586.12020000146
+      },
+      "reference_answer": "Less than 2,300 mg per day, and even less for children younger than 14.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states the general limit of less than 2,300 mg per day and accurately provides the specific lower limits for children under 14, which aligns with the reference answer."
+    },
+    {
+      "id": "dga-04",
+      "type": "number",
+      "answerable": true,
+      "question": "How many alcoholic drinks a day is moderate drinking for women?",
+      "top_score": 0.9934436877517278,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Moderate drinking for women is defined as up to 1 standard drink or less per day when alcohol is consumed[1][3][4][5].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, p.117",
+        "Dietary Guidelines for Americans, 2020-2025, pp.31-32",
+        "Dietary Guidelines for Americans, 2020-2025, p.62",
+        "Dietary Guidelines for Americans, 2020-2025, p.142"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 621.0331000002043,
+        "generation": 0.0,
+        "total": 621.628699998837
+      },
+      "reference_answer": "1 drink or less in a day (2 or less for men), on days when alcohol is consumed.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that moderate drinking for women is 1 drink or less per day, which aligns with the key fact in the reference answer."
+    },
+    {
+      "id": "dga-05",
+      "type": "fact",
+      "answerable": true,
+      "question": "When should infants start getting vitamin D supplements?",
+      "top_score": 0.9996965458530628,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Infants should begin vitamin D supplementation soon after birth (typically 400 IU per day for those fed human milk exclusively or mixed‐fed)[1][5].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, p.69",
+        "Dietary Guidelines for Americans, 2020-2025, p.66"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 637.6443999979529,
+        "generation": 0.0,
+        "total": 638.2515999976022
+      },
+      "reference_answer": "Beginning soon after birth.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that supplementation should begin soon after birth, aligning with the reference answer, and provides accurate additional details regarding dosage."
+    },
+    {
+      "id": "dga-06",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "At what age should babies start eating solid foods?",
+      "top_score": 0.9996349713853434,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Babies should be introduced to solid (complementary) foods at about 6 months of age [1][3]. Introducing solid foods before 4 months is not recommended, and most infants develop the oral and motor skills needed between 4 and 6 months [1][2].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, p.69",
+        "Dietary Guidelines for Americans, 2020-2025, p.32",
+        "Dietary Guidelines for Americans, 2020-2025, pp.69-70"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 617.5825999998779,
+        "generation": 0.0,
+        "total": 618.161999998847
+      },
+      "reference_answer": "At about 6 months, with nutrient-dense complementary foods.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that babies should start solid foods at about 6 months, which aligns with the reference answer."
+    },
+    {
+      "id": "dga-07",
+      "type": "number",
+      "answerable": true,
+      "question": "What is the saturated fat limit in the Dietary Guidelines for Americans?",
+      "top_score": 0.9968778789066003,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The Dietary Guidelines for Americans set the saturated‐fat limit at less than 10 percent of total calories (energy) per day[1][3].",
+      "citations": [
+        "Dietary Guidelines for Americans, 2020-2025, pp.92-93",
+        "Dietary Guidelines for Americans, 2020-2025, p.57"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 649.3764000006195,
+        "generation": 0.0,
+        "total": 650.0003000001016
+      },
+      "reference_answer": "Less than 10 percent of calories per day starting at age 2.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "partial",
+      "correctness_reason": "The candidate correctly states the limit is less than 10 percent of calories but omits the key detail that this applies starting at age 2."
+    },
+    {
+      "id": "opi-01",
+      "type": "regression",
+      "answerable": true,
+      "question": "What should clinicians do before increasing opioid dosage to 90 MME per day?",
+      "top_score": 0.9997772107378228,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Clinicians should pause and carefully reassess the individual patient’s evidence of benefit versus risk before any increase to ≥50 MME/day, including a dose of 90 MME/day[1][2]. \nIf they decide to proceed, the increase should be the smallest practical amount after evaluating diagnosis, incremental pain‐function benefit, alternative therapies, and patient values[1][2]. \nBecause the dosage will exceed the 50 MME/day threshold, clinicians must add precautions such as more frequent follow‐up (within the lower end of the 1–4 week range) and consider even shorter intervals for high‐risk opioids[4][5]. \nThey should also offer naloxone and overdose‐prevention education to the patient and household members[1].",
+      "citations": [
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.34",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, pp.32-33",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, pp.42-43",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.44"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 606.650300000183,
+        "generation": 0.0,
+        "total": 607.2993999987375
+      },
+      "reference_answer": "Pause and carefully reassess individual benefits and risks before increasing to ≥50 MME/day; increases beyond that are unlikely to add benefit while overdose risk rises.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly identifies the requirement to pause and reassess benefits and risks before increasing to 90 MME (which is ≥50 MME) and includes appropriate additional safety measures like naloxone and follow-up, aligning with the reference."
+    },
+    {
+      "id": "opi-02",
+      "type": "fact",
+      "answerable": true,
+      "question": "Should extended-release opioids be used when starting opioid therapy?",
+      "top_score": 0.9997363306492262,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "No. When initiating opioid therapy for acute, subacute, or chronic pain, clinicians should prescribe immediate‐release opioids rather than extended‐release/long‐acting (ER/LA) opioids, and should not start ER/LA opioids for acute pain or for subacute/chronic pain initiation[1][2][3].",
+      "citations": [
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.30",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.13",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.8"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 617.9914000022109,
+        "generation": 0.0,
+        "total": 618.6048000017763
+      },
+      "reference_answer": "No; prescribe immediate-release opioids instead of extended-release/long-acting opioids.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that extended-release opioids should not be used when starting opioid therapy and recommends immediate-release opioids instead, which aligns perfectly with the reference answer."
+    },
+    {
+      "id": "opi-03",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "How many days' supply of opioid painkillers should be given for short-term pain after an injury?",
+      "top_score": 0.9852606913767527,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "For short‐term pain after an injury, the guideline recommends an initial opioid prescription of roughly 4–7 days’ supply[1]. In practice, patients typically continue taking the medication for about 4 days (interquartile range 2–7 days)[2]. Median use varies by injury type: ≈6 days for back pain or fractures and ≈5.5 days for musculoskeletal injuries[2].",
+      "citations": [
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.41",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.41"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 602.5172999979986,
+        "generation": 0.0,
+        "total": 603.0232999983127
+      },
+      "reference_answer": "No more than needed for the expected duration of severe pain; a few days or less is often sufficient.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "partial",
+      "correctness_reason": "The candidate provides specific day counts (4-7 days) which are more precise than the reference's general 'a few days or less', but it contradicts the reference's emphasis on limiting supply to the *expected duration of severe pain* by suggesting a fixed initial prescription length that may exceed the necessary period for many patients."
+    },
+    {
+      "id": "opi-04",
+      "type": "number",
+      "answerable": true,
+      "question": "How soon after starting opioid therapy for chronic pain should benefits and risks be evaluated?",
+      "top_score": 0.9995493357200066,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Benefits and risks should be evaluated within 1–4 weeks of starting opioid therapy for chronic pain[1].",
+      "citations": [
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, pp.42-43"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 605.6867000006605,
+        "generation": 0.0,
+        "total": 606.3232000014978
+      },
+      "reference_answer": "Within 1-4 weeks of starting therapy or of a dose increase, then regularly.",
+      "faithfulness": 0.0,
+      "unsupported_claims": [
+        "Benefits and risks should be evaluated within 1–4 weeks of starting opioid therapy for chronic pain"
+      ],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states the 1-4 week timeframe for evaluation, which aligns with the key fact in the reference answer."
+    },
+    {
+      "id": "opi-05",
+      "type": "fact",
+      "answerable": true,
+      "question": "What data source should clinicians review to see a patient's other controlled substance prescriptions?",
+      "top_score": 0.9992204184994153,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Clinicians should review state prescription drug monitoring program (PDMP) data to identify other controlled‐substance prescriptions a patient has received[2][3][4].",
+      "citations": [
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.50",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.50",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.14"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 674.0377999994962,
+        "generation": 0.0,
+        "total": 674.7202000005927
+      },
+      "reference_answer": "State prescription drug monitoring program (PDMP) data.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly identifies state prescription drug monitoring program (PDMP) data as the source to review, matching the reference answer."
+    },
+    {
+      "id": "opi-06",
+      "type": "fact",
+      "answerable": true,
+      "question": "What caution applies to prescribing opioids together with benzodiazepines?",
+      "top_score": 0.9997608700963635,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Clinicians should use particular caution when prescribing opioid pain medication and benzodiazepines concurrently and assess whether the benefits outweigh the risks of the combined use [1][3][4]. Because concurrent use can potentiate respiratory depression and overdose, clinicians should check the prescription‐drug monitoring program, involve pharmacists, and coordinate care with other prescribers when these medications are co‐prescribed [2][5][4].",
+      "citations": [
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, pp.54-55",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.14",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, pp.50-51",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, pp.55-56",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.22"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 643.2047999987844,
+        "generation": 0.0,
+        "total": 643.7026999992668
+      },
+      "reference_answer": "Use particular caution and consider whether benefits outweigh the risks of concurrent prescribing.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately conveys the key facts from the reference (use particular caution and consider if benefits outweigh risks) and adds relevant, non-contradictory details about monitoring and coordination of care."
+    },
+    {
+      "id": "opi-07",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "What overdose-reversal medication should be offered to patients on opioids?",
+      "top_score": 0.9991403551614977,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Naloxone, an opioid antagonist that can reverse severe respiratory depression, should be offered to patients who are prescribed opioids[4][5].",
+      "citations": [
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.50",
+        "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022, p.45"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 615.6186999978672,
+        "generation": 0.0,
+        "total": 616.2965000003169
+      },
+      "reference_answer": "Naloxone.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly identifies Naloxone as the medication and provides accurate supporting details without contradicting the reference."
+    },
+    {
+      "id": "ast-01",
+      "type": "fact",
+      "answerable": true,
+      "question": "Is FeNO testing recommended when the diagnosis of asthma is uncertain?",
+      "top_score": 0.9998806855109098,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Yes. In individuals ≥ 5 years old whose asthma diagnosis is uncertain—whether after history, clinical findings, spirometry (including bronchodilator response) or when spirometry cannot be performed—the Expert Panel conditionally recommends adding FeNO measurement as an adjunct to the evaluation process[2][3]. The guidance notes that FeNO testing has a supportive role in such cases and should be interpreted with attention to allergen sensitivity and atopy[1].",
+      "citations": [
+        "2020 Focused Updates to the Asthma Management Guidelines, p.50",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.36",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.50"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 591.6422999980568,
+        "generation": 0.0,
+        "total": 592.2445999967749
+      },
+      "reference_answer": "Yes, conditionally, as an adjunct to the evaluation in people aged 5 and older when diagnosis is uncertain.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly identifies the conditional recommendation for FeNO testing in individuals aged 5 and older with uncertain asthma diagnosis, aligning with the reference answer."
+    },
+    {
+      "id": "ast-02",
+      "type": "fact",
+      "answerable": true,
+      "question": "Should FeNO be used to predict future asthma in children aged 0 to 4 with recurrent wheezing?",
+      "top_score": 0.9999571940723054,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "FeNO measurement should not be used to predict the future development of asthma in children ages 0–4 years with recurrent wheezing. The Expert Panel issues a strong recommendation against this use, noting low certainty of evidence and that prediction probabilities below 60 % are not clinically useful[1][2]. The guideline also states that FeNO results in this age group should be interpreted with caution until more data are available[2].",
+      "citations": [
+        "2020 Focused Updates to the Asthma Management Guidelines, p.58",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.58"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 622.0959999991464,
+        "generation": 0.0,
+        "total": 622.7268000002368
+      },
+      "reference_answer": "No; the Expert Panel recommends against it.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that FeNO should not be used for this purpose and aligns with the reference by citing the Expert Panel's recommendation against it."
+    },
+    {
+      "id": "ast-03",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "What is SMART therapy for asthma?",
+      "top_score": 0.9779958648628729,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "SMART (Single Maintenance And Reliever Therapy) uses a fixed‐dose combination inhaled corticosteroid–formoterol both as daily maintenance and as the quick‐relief inhaler, eliminating the need for a separate short‐acting β‐agonist [1][2]. The regimen typically involves one to two puffs of the combination taken once or twice daily for maintenance, with additional rescue puffs allowed (up to about 10 per day in the studies) [1][2]. It is recommended for individuals ≥ 4 years old, especially those with a recent severe exacerbation, and is appropriate at Step 3 (low‐dose) and Step 4 (medium‐dose) of therapy [1]. Clinical trials have shown SMART reduces asthma exacerbations by roughly 30‐50 % compared with standard maintenance ICS‐LABA plus SABA and results in two‐ to fourfold lower overall corticosteroid exposure [2][4][5].",
+      "citations": [
+        "2020 Focused Updates to the Asthma Management Guidelines, p.81",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.83",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.82",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.86"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 574.5403000000806,
+        "generation": 0.0,
+        "total": 575.0967000021774
+      },
+      "reference_answer": "Single maintenance and reliever therapy: one ICS-formoterol inhaler used both daily and as needed.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately defines SMART therapy as using an ICS-formoterol inhaler for both maintenance and relief, aligning with the reference, and provides additional correct details about dosing and benefits without contradiction."
+    },
+    {
+      "id": "ast-04",
+      "type": "fact",
+      "answerable": true,
+      "question": "Does the Expert Panel recommend sublingual immunotherapy for allergic asthma?",
+      "top_score": 0.9998442083494048,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The Expert Panel conditionally recommends against the use of sublingual immunotherapy as a treatment for allergic asthma[1][4].",
+      "citations": [
+        "2020 Focused Updates to the Asthma Management Guidelines, pp.101-102",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.104"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 604.7969000028388,
+        "generation": 0.0,
+        "total": 605.3854000019783
+      },
+      "reference_answer": "No; it conditionally recommends against sublingual immunotherapy.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately reflects the reference by stating that the panel conditionally recommends against sublingual immunotherapy for allergic asthma."
+    },
+    {
+      "id": "ast-05",
+      "type": "fact",
+      "answerable": true,
+      "question": "Is bronchial thermoplasty recommended for adults with persistent asthma?",
+      "top_score": 0.9998498543842969,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "The 2020 focused update conditionally recommends **against** using bronchial thermoplasty in adults ≥ 18 years with persistent asthma [1][2].",
+      "citations": [
+        "2020 Focused Updates to the Asthma Management Guidelines, p.106",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.40"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 590.5046000007133,
+        "generation": 0.0,
+        "total": 590.9608000001754
+      },
+      "reference_answer": "No; conditionally recommended against for ages 18 and older.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that bronchial thermoplasty is conditionally recommended against for adults (ages 18 and older) with persistent asthma, aligning perfectly with the reference answer."
+    },
+    {
+      "id": "ast-06",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "Are dust-mite-proof pillow and mattress covers enough on their own to help asthma?",
+      "top_score": 0.9994182560925391,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "No. Studies show that using impermeable pillow and mattress covers alone does not improve asthma outcomes and should not be used as a single‐component strategy[1][2][3][5]. The Expert Panel conditionally recommends these covers only when they are part of a multicomponent allergen‐mitigation intervention for patients with confirmed dust‐mite sensitization or symptoms[2][3].",
+      "citations": [
+        "2020 Focused Updates to the Asthma Management Guidelines, p.70",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.63",
+        "2020 Focused Updates to the Asthma Management Guidelines, pp.63-64",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.67"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 653.9177000013296,
+        "generation": 0.0,
+        "total": 654.4109000024037
+      },
+      "reference_answer": "No; only as part of a multicomponent allergen mitigation intervention, not as a single intervention.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that dust-mite-proof covers are not sufficient on their own and should only be used as part of a multicomponent intervention, aligning perfectly with the reference answer."
+    },
+    {
+      "id": "ast-07",
+      "type": "fact",
+      "answerable": true,
+      "question": "For people aged 12 and older whose asthma is uncontrolled on ICS-LABA, what can be added?",
+      "top_score": 0.9996791831059791,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "A long‐acting muscarinic antagonist (LAMA) can be added to the existing inhaled corticosteroid‐LABA regimen for individuals ≥ 12 years with uncontrolled asthma despite ICS‐LABA therapy[1][2].",
+      "citations": [
+        "2020 Focused Updates to the Asthma Management Guidelines, p.94",
+        "2020 Focused Updates to the Asthma Management Guidelines, p.94"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 655.8016999988467,
+        "generation": 0.0,
+        "total": 656.3823999968008
+      },
+      "reference_answer": "A long-acting muscarinic antagonist (LAMA).",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly identifies a long-acting muscarinic antagonist (LAMA) as the add-on therapy for the specified population, matching the reference answer."
+    },
+    {
+      "id": "iso-01",
+      "type": "number",
+      "answerable": true,
+      "question": "How many air changes per hour should an airborne infection isolation room provide?",
+      "top_score": 0.9918067135520935,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "An airborne infection isolation room should provide at least 6 air changes per hour in existing facilities and 12 air changes per hour in new construction or renovated rooms [1][2][3].",
+      "citations": [
+        "2007 Guideline for Isolation Precautions, p.74",
+        "2007 Guideline for Isolation Precautions, p.91",
+        "2007 Guideline for Isolation Precautions, pp.133-134"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 630.8404000010341,
+        "generation": 0.0,
+        "total": 631.3650999982201
+      },
+      "reference_answer": "At least 6 (existing facility) or 12 (new construction/renovation) air changes per hour.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately states the required air changes per hour for both existing facilities (6) and new construction/renovation (12), matching the reference answer."
+    },
+    {
+      "id": "iso-02",
+      "type": "fact",
+      "answerable": true,
+      "question": "Who does respiratory hygiene/cough etiquette apply to in a healthcare setting?",
+      "top_score": 0.9998396249331749,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Respiratory hygiene/cough etiquette is intended for everyone who enters a healthcare facility—including health‐care personnel, patients and visitors—and is especially directed at patients who have respiratory symptoms and the family members or friends who accompany them, i.e., any person showing signs such as cough, congestion, rhinorrhea or increased secretions [1][2][3].",
+      "citations": [
+        "2007 Guideline for Isolation Precautions, p.15",
+        "2007 Guideline for Isolation Precautions, p.139",
+        "2007 Guideline for Isolation Precautions, p.70"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 665.5144999967888,
+        "generation": 0.0,
+        "total": 666.0699999993085
+      },
+      "reference_answer": "All persons who enter a healthcare setting: personnel, patients and visitors.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly identifies that respiratory hygiene applies to all persons entering the healthcare setting, specifically listing personnel, patients, and visitors, which aligns with the reference answer."
+    },
+    {
+      "id": "iso-03",
+      "type": "fact",
+      "answerable": true,
+      "question": "Should single-dose or multiple-dose vials be used for injected medications?",
+      "top_score": 0.9991862953812628,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Injectable medications should be drawn from single‐dose vials whenever possible, especially when the medication will be administered to multiple patients [1][4]. Single‐dose vials are intended for use in a single patient and must not be shared with other patients [2]. If a multidose vial must be used, the needle or cannula and syringe used to access it must be sterile, the vial must be stored according to the manufacturer’s recommendations, and it must not be kept in the immediate patient‐treatment area or used for multiple patients without strict aseptic technique [2][4].",
+      "citations": [
+        "2007 Guideline for Isolation Precautions, pp.71-72",
+        "2007 Guideline for Isolation Precautions, p.86",
+        "2007 Guideline for Isolation Precautions, p.86"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 624.1164000020945,
+        "generation": 0.0,
+        "total": 624.7561000018322
+      },
+      "reference_answer": "Single-dose vials whenever possible.",
+      "faithfulness": 0.8333333333333334,
+      "unsupported_claims": [
+        "Multidose vials must not be used for multiple patients without strict aseptic technique."
+      ],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that single-dose vials should be used whenever possible, aligning with the reference answer, and provides additional accurate context regarding the use of multidose vials."
+    },
+    {
+      "id": "iso-04",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "Do clinicians need to wear a mask when doing spinal injections or putting a catheter into the epidural space?",
+      "top_score": 0.9973565097864426,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Yes. Current guidelines require clinicians to wear a surgical face mask when they place a catheter or inject material into the spinal canal or epidural space, such as during lumbar puncture, myelography, or spinal/epidural anesthesia[1]. The recommendation is based on evidence that masks limit oropharyngeal droplet dispersal and provide additional protection for these high‐risk procedures[2]. Use of masks for these spinal procedures is now included as a new element of Standard Precautions[3] and is reaffirmed in the 2007 guideline as a required practice for such interventions[5].",
+      "citations": [
+        "2007 Guideline for Isolation Precautions, p.86",
+        "2007 Guideline for Isolation Precautions, p.72",
+        "2007 Guideline for Isolation Precautions, p.70",
+        "2007 Guideline for Isolation Precautions, p.9"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 638.808899999276,
+        "generation": 0.0,
+        "total": 639.3134000027203
+      },
+      "reference_answer": "Yes; masks are a Standard Precautions element for these lumbar puncture procedures.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly affirms that masks are required for these procedures and identifies them as part of Standard Precautions, aligning with the reference answer."
+    },
+    {
+      "id": "iso-05",
+      "type": "number",
+      "answerable": true,
+      "question": "Is 3 feet the rule for when to put on a mask under droplet precautions?",
+      "top_score": 0.9780083547890281,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Historically a distance of ≤ 3 feet around a patient has been used as the defined risk zone and wearing a mask within that distance has been shown to be effective for droplet‐precaution transmission control [5]. However, the guideline states that droplets can travel 6 feet or more and that the ≤ 3‐foot distance should not be the sole criterion for deciding when to don a mask [5]. In practice, masks are generally donned upon entry into the patient’s room or for close contact, rather than strictly at a 3‐foot line [1]. Therefore, 3 feet is a reference point but not an absolute rule for mask use under droplet precautions.",
+      "citations": [
+        "2007 Guideline for Isolation Precautions, p.19",
+        "2007 Guideline for Isolation Precautions, p.74"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 603.2156000001123,
+        "generation": 0.0,
+        "total": 603.7070999991556
+      },
+      "reference_answer": "No; ≤3 feet is only an example of 'a short distance' and should not be the sole criterion.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that 3 feet is not the sole rule and aligns with the reference by noting it is just a reference point or example of short distance, while adding accurate context about guidelines."
+    },
+    {
+      "id": "hh-01",
+      "type": "regression",
+      "answerable": true,
+      "question": "How long should hands be rubbed with an alcohol-based hand rub?",
+      "top_score": 0.9984447409626799,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Hands should be rubbed together with an alcohol‐based hand rub, covering all surfaces of the hands and fingers, until the hands are dry[2].",
+      "citations": [
+        "Guideline for Hand Hygiene in Health-Care Settings, p.34"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 623.6664000025485,
+        "generation": 0.0,
+        "total": 624.2988000012701
+      },
+      "reference_answer": "Until hands are dry, covering all surfaces of hands and fingers.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer accurately states that hands should be rubbed until dry and that all surfaces of the hands and fingers must be covered, which matches the reference answer."
+    },
+    {
+      "id": "hh-02",
+      "type": "confusable",
+      "answerable": true,
+      "question": "When should healthcare workers wash with soap and water instead of using an alcohol hand rub?",
+      "top_score": 0.9979634780752915,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Healthcare workers should wash their hands with non‐antimicrobial or antimicrobial soap and water when the hands are visibly dirty, contaminated with proteinaceous material, blood, or other body fluids [3]. They should also use soap and water (preferably antimicrobial) if exposure to *Bacillus anthracis* is suspected or proven, because alcohol‐based agents have poor activity against spores [2].",
+      "citations": [
+        "Guideline for Hand Hygiene in Health-Care Settings, p.34",
+        "Guideline for Hand Hygiene in Health-Care Settings, p.34"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 659.1743000026327,
+        "generation": 0.0,
+        "total": 659.7682000028726
+      },
+      "reference_answer": "When hands are visibly dirty, contaminated with proteinaceous material, or soiled with blood or body fluids.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer includes all key conditions from the reference (visibly dirty, proteinaceous material, blood/body fluids) and adds a correct specific exception for spores, which is consistent with guidelines."
+    },
+    {
+      "id": "hh-03",
+      "type": "fact",
+      "answerable": true,
+      "question": "Can healthcare workers wear artificial fingernails?",
+      "top_score": 0.999406080166285,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "Healthcare workers may wear artificial fingernails in low‐risk settings, but they are prohibited when providing direct care to high‐risk patients such as those in intensive‐care units or operating rooms, where CDC/HICPAC recommends (Category IA) that artificial nails not be worn because of documented outbreak associations [2]. Individual facilities may adopt broader policies that restrict artificial nails for all staff who have direct patient contact, but such decisions are left to the institution’s infection‐control program [2][1]. Studies have shown that artificial nails harbor more pathogenic organisms, especially gram‐negative bacilli and yeasts, and have been epidemiologically linked to several infection outbreaks [2][4][5].",
+      "citations": [
+        "2007 Guideline for Isolation Precautions, p.52",
+        "2007 Guideline for Isolation Precautions, p.81",
+        "Guideline for Hand Hygiene in Health-Care Settings, p.31",
+        "Guideline for Hand Hygiene in Health-Care Settings, p.31"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 611.6237999995064,
+        "generation": 0.0,
+        "total": 612.129900000582
+      },
+      "reference_answer": "Not when having direct contact with high-risk patients (e.g., ICU or operating room).",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states that artificial fingernails are prohibited for direct contact with high-risk patients (ICU/OR), aligning with the reference, and provides accurate supporting details."
+    },
+    {
+      "id": "hh-04",
+      "type": "number",
+      "answerable": true,
+      "question": "How long should a surgical hand scrub with antimicrobial soap usually last?",
+      "top_score": 0.9996049732978812,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "A surgical hand scrub with antimicrobial soap is typically performed for the time recommended by the manufacturer, usually 2 to 6 minutes [1].",
+      "citations": [
+        "Guideline for Hand Hygiene in Health-Care Settings, p.35"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 648.1801000009,
+        "generation": 0.0,
+        "total": 648.8143999995373
+      },
+      "reference_answer": "Usually 2-6 minutes, as recommended by the manufacturer; long scrubs (e.g., 10 minutes) are not necessary.",
+      "faithfulness": 1.0,
+      "unsupported_claims": [],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate answer correctly states the typical duration of 2-6 minutes and notes that it should follow manufacturer recommendations, which aligns with the key facts in the reference answer."
+    },
+    {
+      "id": "hh-05",
+      "type": "paraphrase",
+      "answerable": true,
+      "question": "Is hand sanitizer enough if a health worker may have been exposed to anthrax?",
+      "top_score": 0.7579067944191079,
+      "refused": false,
+      "refusal_reason": null,
+      "answer": "No—alcohol‐based hand rubs are ineffective against anthrax spores, so a health worker with possible exposure should wash hands with non‐antimicrobial or antimicrobial soap and water (or 2 % chlorhexidine) rather than rely on sanitizer [2][3][5].",
+      "citations": [
+        "Guideline for Hand Hygiene in Health-Care Settings, p.19",
+        "2007 Guideline for Isolation Precautions, p.126",
+        "Guideline for Hand Hygiene in Health-Care Settings, p.34"
+      ],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 706.3194000002113,
+        "generation": 1533.0695999982709,
+        "total": 2245.7766000006814
+      },
+      "reference_answer": "No; wash with soap and water, because antiseptics have poor activity against spores.",
+      "faithfulness": 0.6666666666666666,
+      "unsupported_claims": [
+        "A health worker with possible exposure to anthrax should wash hands with 2% chlorhexidine"
+      ],
+      "faithfulness_parse_error": false,
+      "correctness": "correct",
+      "correctness_reason": "The candidate correctly states that hand sanitizer is insufficient and recommends washing with soap and water, aligning with the reference's key facts."
+    },
+    {
+      "id": "oos-01",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "What is the recommended amoxicillin dose for acute otitis media in children?",
+      "top_score": 0.09245217705764706,
+      "refused": true,
+      "refusal_reason": "low_retrieval_confidence",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 564.6461999967869,
+        "total": 564.6515999978874
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-02",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "How is type 1 diabetes managed with insulin pumps?",
+      "top_score": 9.382674446232555e-05,
+      "refused": true,
+      "refusal_reason": "low_retrieval_confidence",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 630.7082000021182,
+        "total": 630.7125000021188
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-03",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "Which vaccines should adults over 65 receive?",
+      "top_score": 0.09704736894735255,
+      "refused": true,
+      "refusal_reason": "low_retrieval_confidence",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 609.5638000006147,
+        "total": 609.5672999981616
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-04",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "What is the first-line treatment for major depressive disorder?",
+      "top_score": 0.19758798425773738,
+      "refused": true,
+      "refusal_reason": "low_retrieval_confidence",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 650.9688000005553,
+        "total": 650.9719999994559
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-05",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "At what age should colorectal cancer screening begin?",
+      "top_score": 0.13713332124593747,
+      "refused": true,
+      "refusal_reason": "low_retrieval_confidence",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 610.8156999980565,
+        "total": 610.8194999978878
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-06",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "How should malaria be treated in pregnant women?",
+      "top_score": 0.5318525174324267,
+      "refused": true,
+      "refusal_reason": "llm_insufficient_context",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 608.3585000014864,
+        "generation": 2076.012899997295,
+        "total": 2693.102799999906
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-07",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "What HbA1c target is recommended for adults with type 2 diabetes?",
+      "top_score": 0.9018181714040372,
+      "refused": true,
+      "refusal_reason": "llm_insufficient_context",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 559.5939999984694,
+        "generation": 1911.9494000005943,
+        "total": 2480.0590999984706
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-08",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "Which antibiotic should be used to treat MRSA pneumonia?",
+      "top_score": 0.948527748568724,
+      "refused": true,
+      "refusal_reason": "llm_insufficient_context",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 538.2205000023532,
+        "generation": 885.0877000004402,
+        "total": 1430.5903000022226
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-09",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "How many hours of sleep should teenagers get each night?",
+      "top_score": 0.2168219358969433,
+      "refused": true,
+      "refusal_reason": "low_retrieval_confidence",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 545.9209000000556,
+        "total": 545.9235999987868
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-10",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "What is the capital of France?",
+      "top_score": 1.7290948735765414e-05,
+      "refused": true,
+      "refusal_reason": "low_retrieval_confidence",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 561.9647999992594,
+        "total": 561.9679000010365
+      },
+      "reference_answer": null
+    },
+    {
+      "id": "oos-11",
+      "type": "out_of_scope",
+      "answerable": false,
+      "question": "What dose of ibuprofen should adults take for back pain?",
+      "top_score": 0.9149999156853074,
+      "refused": true,
+      "refusal_reason": "llm_insufficient_context",
+      "answer": "I don't know based on the provided guidelines.",
+      "citations": [],
+      "invalid_citations": [],
+      "latency_ms": {
+        "retrieval": 557.657699999254,
+        "generation": 895.9324000024935,
+        "total": 1459.6955999986676
+      },
+      "reference_answer": null
+    }
+  ]
+}

@@ -54,11 +54,15 @@ class Settings(BaseSettings):
     llm_max_tokens: int = 1024        # reasoning models spend part of this on hidden reasoning tokens
     context_chunks: int = 5           # chunks shown to the LLM
     # Refuse without calling the LLM when the top reranker score (sigmoid) is below this.
-    # Initial value from a 4-question preview (answerable ~0.9998, out-of-scope <=0.09); tuned in eval.
+    # Deliberately loose (eval/results/generation_20261015-203918): it stops clearly unrelated
+    # questions; topically close but unanswerable ones (MRSA treatment scored 0.949) are refused by
+    # the LLM's grounded refusal. 48/48 answerable answered, 11/11 out-of-scope refused.
     refusal_threshold: float = 0.5
     # Standard env var name, read with or without the MEDDOC_ prefix. SecretStr hides it in logs/reprs.
     groq_api_key: SecretStr | None = Field(default=None, validation_alias=AliasChoices("GROQ_API_KEY", "MEDDOC_GROQ_API_KEY"))
     groq_base_url: str = "https://api.groq.com/openai/v1"
+    # Evaluation judge: a different model family from the generator (avoids self-preference bias).
+    judge_model: str = "qwen/qwen3.8-27b"
     ollama_base_url: str = "http://localhost:11434"
 
     @property
