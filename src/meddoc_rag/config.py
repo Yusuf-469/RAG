@@ -32,9 +32,13 @@ class Settings(BaseSettings):
 
     # Retrieval
     top_k: int = 5
-    retriever: str = "hybrid"
+    retriever: str = "hybrid+rerank"
     hybrid_candidates: int = 50   # results taken from each retriever before fusion
     rrf_k: int = 60
+
+    # Reranking
+    reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    rerank_candidates: int = 30   # first-stage results rescored by the cross-encoder
 
     @property
     def manifest_path(self) -> Path:

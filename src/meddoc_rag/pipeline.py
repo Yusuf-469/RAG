@@ -8,8 +8,10 @@ from meddoc_rag.retrieval.base import Retriever
 from meddoc_rag.retrieval.bm25 import BM25Retriever
 from meddoc_rag.retrieval.dense import DenseRetriever
 from meddoc_rag.retrieval.hybrid import HybridRetriever
+from meddoc_rag.retrieval.reranker import CrossEncoderReranker, Reranker, RerankingRetriever
 
-RETRIEVERS = ("dense", "bm25", "hybrid")
+BASE_RETRIEVERS = ("dense", "bm25", "hybrid")
+RETRIEVERS = (*BASE_RETRIEVERS, *(f"{b}+rerank" for b in BASE_RETRIEVERS))
 
 
 def make_embedder(cfg: Settings = settings, use_cache: bool = True) -> SentenceTransformerEmbedder:
@@ -37,8 +39,21 @@ def load_bm25_retriever(strategy: str, cfg: Settings = settings) -> BM25Retrieve
     return BM25Retriever(BM25Index.load(cfg.index_dir(strategy)))
 
 
-def load_retriever(name: str, strategy: str, embedder: SentenceTransformerEmbedder | None = None, cfg: Settings = settings) -> Retriever:
-    """Build a retriever by name: 'dense', 'bm25' or 'hybrid' (dense + BM25 fused with RRF)."""
+def make_reranker(cfg: Settings = settings) -> CrossEncoderReranker:
+    return CrossEncoderReranker(cfg.reranker_model, device=cfg.device)
+
+
+def load_retriever(
+    name: str,
+    strategy: str,
+    embedder: SentenceTransformerEmbedder | None = None,
+    cfg: Settings = settings,
+    reranker: Reranker | None = None,
+) -> Retriever:
+    """Build a retriever by name: 'dense', 'bm25', 'hybrid', or any of these + '+rerank'."""
+    if name.endswith("+rerank"):
+        base = load_retriever(name.removesuffix("+rerank"), strategy, embedder, cfg)
+        return RerankingRetriever(base, reranker or make_reranker(cfg), cfg.rerank_candidates)
     if name == "bm25":
         return load_bm25_retriever(strategy, cfg)
     embedder = embedder or make_embedder(cfg, use_cache=False)
