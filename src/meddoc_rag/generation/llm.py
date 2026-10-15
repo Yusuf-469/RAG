@@ -9,6 +9,7 @@ import hashlib
 import json
 import logging
 import sqlite3
+import threading
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -142,7 +143,9 @@ class CachedLLM:
         self.provider = inner.provider
         self.model = inner.model
         path.parent.mkdir(parents=True, exist_ok=True)
-        self._db = sqlite3.connect(path)
+        # The API serves requests from a thread pool; one shared connection guarded by a lock.
+        self._db = sqlite3.connect(path, check_same_thread=False)
+        self._lock = threading.Lock()
         self._db.execute("CREATE TABLE IF NOT EXISTS llm (key TEXT PRIMARY KEY, response TEXT NOT NULL)")
 
     def _key(self, messages: list[Message], temperature: float, max_tokens: int) -> str:
@@ -151,10 +154,12 @@ class CachedLLM:
 
     def generate(self, messages: list[Message], temperature: float = 0.0, max_tokens: int = 600) -> LLMResponse:
         key = self._key(messages, temperature, max_tokens)
-        row = self._db.execute("SELECT response FROM llm WHERE key = ?", (key,)).fetchone()
+        with self._lock:
+            row = self._db.execute("SELECT response FROM llm WHERE key = ?", (key,)).fetchone()
         if row:
             return LLMResponse(**{**json.loads(row[0]), "cached": True, "latency_ms": 0.0})
-        resp = self.inner.generate(messages, temperature, max_tokens)
-        self._db.execute("INSERT OR REPLACE INTO llm (key, response) VALUES (?, ?)", (key, json.dumps(asdict(resp))))
-        self._db.commit()
+        resp = self.inner.generate(messages, temperature, max_tokens)  # network call outside the lock
+        with self._lock:
+            self._db.execute("INSERT OR REPLACE INTO llm (key, response) VALUES (?, ?)", (key, json.dumps(asdict(resp))))
+            self._db.commit()
         return resp
