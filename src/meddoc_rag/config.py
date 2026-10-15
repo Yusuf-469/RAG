@@ -45,9 +45,11 @@ class Settings(BaseSettings):
 
     # Generation
     llm_provider: Literal["groq", "ollama"] = "groq"
-    llm_model: str = "llama-3.3-70b-versatile"
+    # Groq's model list changes; checked against GET /models on 2026-10-15
+    # (llama-3.3-70b-versatile was no longer offered). The eval judge will use a different family.
+    llm_model: str = "openai/gpt-oss-120b"
     llm_temperature: float = 0.0      # deterministic answers -> reproducible evaluation
-    llm_max_tokens: int = 600
+    llm_max_tokens: int = 1024        # reasoning models spend part of this on hidden reasoning tokens
     context_chunks: int = 5           # chunks shown to the LLM
     # Refuse without calling the LLM when the top reranker score (sigmoid) is below this.
     # Initial value from a 4-question preview (answerable ~0.9998, out-of-scope <=0.09); tuned in eval.

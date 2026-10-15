@@ -113,3 +113,27 @@ def test_chunk_ids_are_unique_and_stable() -> None:
     b = RecursiveChunker(WC, max_tokens=15, overlap_tokens=3).chunk(doc)
     assert [c.chunk_id for c in a] == [c.chunk_id for c in b]
     assert len({c.chunk_id for c in a}) == len(a)
+
+
+def test_excluded_section_never_chunked_by_any_strategy() -> None:
+    from meddoc_rag.ingestion.document import excluded_ranges
+
+    doc = make_doc(
+        [f"Guidance\n\n{sentences(6, 'g')}\n\nQuiz Section\n\n{sentences(6, 'q')}"],
+        headings=[("Guidance", 1), ("Quiz Section", 1)],
+    )
+    doc = doc.model_copy(update={"excluded": excluded_ranges(doc.headings, len(doc.text), ["^quiz"])})
+    assert doc.excluded == [(doc.text.index("Quiz Section"), len(doc.text))]
+    for cls in (FixedSizeChunker, RecursiveChunker, SectionAwareChunker):
+        chunks = cls(WC, max_tokens=12, overlap_tokens=2).chunk(doc)
+        assert chunks, cls.name
+        assert not any("q0" in c.text or "Quiz" in c.text for c in chunks), cls.name   # straddling chunks are clipped
+
+
+def test_clip_span_keeps_larger_side() -> None:
+    from meddoc_rag.ingestion.chunkers import clip_span
+
+    assert clip_span((0, 100), [(80, 200)]) == (0, 80)
+    assert clip_span((0, 100), [(0, 10)]) == (10, 100)
+    assert clip_span((20, 30), [(0, 100)]) is None
+    assert clip_span((0, 50), [(60, 70)]) == (0, 50)

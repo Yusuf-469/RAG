@@ -121,6 +121,17 @@ def _headings_from_fonts(placed: list[_PlacedLine]) -> list[Heading]:
     return [Heading(offset=m.offset, level=levels.get(round(m.size), 3), title=m.text) for m in kept]
 
 
+def excluded_ranges(headings: list[Heading], text_len: int, patterns: list[str]) -> list[tuple[int, int]]:
+    """A matching heading excludes text up to the next heading of the same or higher level."""
+    regexes = [re.compile(p, re.IGNORECASE) for p in patterns]
+    ranges = []
+    for i, h in enumerate(headings):
+        if any(r.search(h.title) for r in regexes):
+            end = next((n.offset for n in headings[i + 1:] if n.level <= h.level and n.offset > h.offset), text_len)
+            ranges.append((h.offset, end))
+    return ranges
+
+
 def parse_document(meta: SourceDocument, pdf_path: Path) -> ParsedDocument:
     """Full ingestion for one PDF: load -> clean -> assemble -> locate headings."""
     raw = load_pdf(pdf_path)
@@ -140,4 +151,5 @@ def parse_document(meta: SourceDocument, pdf_path: Path) -> ParsedDocument:
         page_labels=[p.label for p in raw.pages],
         headings=headings,
         heading_source=source,
+        excluded=excluded_ranges(headings, len(text), meta.exclude_sections),
     )

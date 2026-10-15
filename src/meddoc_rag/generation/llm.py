@@ -87,8 +87,14 @@ class GroqClient:
             self.timeout,
         )
         usage = data.get("usage") or {}
+        choice = data["choices"][0]
+        content = choice["message"].get("content") or ""
+        # Reasoning models (e.g. gpt-oss) spend hidden "reasoning" tokens from the same budget;
+        # if the budget runs out before the answer, fail loudly instead of returning "".
+        if not content.strip() and choice.get("finish_reason") == "length":
+            raise LLMError(f"{self.model} used all {max_tokens} tokens before answering; raise llm_max_tokens")
         return LLMResponse(
-            text=data["choices"][0]["message"]["content"] or "",
+            text=content,
             model=data.get("model", self.model),
             prompt_tokens=usage.get("prompt_tokens"),
             completion_tokens=usage.get("completion_tokens"),

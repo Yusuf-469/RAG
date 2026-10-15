@@ -8,6 +8,7 @@
 #                  in a browser, save the PDF as data/raw/<filename>, and the
 #                  script will still verify the checksum.
 # sha256: null  -> not pinned yet; the script prints the hash to paste in.
+# exclude_sections -> heading regexes whose sections are never chunked or indexed.
 
 documents:
   - id: who_hypertension_2021
@@ -97,4 +98,7 @@ documents:
     url: https://www.cdc.gov/mmwr/PDF/rr/rr5116.pdf
     filename: cdc_hand_hygiene_2002.pdf
     manual: true
+    # Multiple-choice CE quiz (pp.51-56): its answer options include deliberately false
+    # statements, e.g. "only effective if applied for >60 seconds", which were cited as fact.
+    exclude_sections: ["^Continuing Education Activity$"]
     sha256: b57cffd78be3694001a553fd4352ee85b41d3e3e6a23ea3daf22f4fbed9a82c3

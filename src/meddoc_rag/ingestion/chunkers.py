@@ -49,6 +49,16 @@ class HFTokenCounter:
         return list(self._tok.encode(text, add_special_tokens=False).offsets)
 
 
+def clip_span(span: Span, excluded: list[Span]) -> Span | None:
+    """Remove excluded ranges from a span, keeping the larger remaining side; None if nothing is left."""
+    start, end = span
+    for x0, x1 in excluded:
+        if start < x1 and x0 < end:  # overlap
+            before, after = (start, min(end, x0)), (max(start, x1), end)
+            start, end = max((before, after), key=lambda s: s[1] - s[0])
+    return (start, end) if end > start else None
+
+
 class Chunker(ABC):
     """Base class: subclasses implement `spans`; `chunk` attaches citation metadata."""
 
@@ -67,7 +77,11 @@ class Chunker(ABC):
 
     def chunk(self, doc: ParsedDocument) -> list[Chunk]:
         chunks = []
-        for start, end in self.spans(doc):
+        for span in self.spans(doc):
+            clipped = clip_span(span, doc.excluded)
+            if clipped is None:
+                continue
+            start, end = clipped
             raw = doc.text[start:end]
             text = raw.strip()
             if not text:

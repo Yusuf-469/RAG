@@ -22,6 +22,8 @@ class SourceDocument(BaseModel):
     filename: str = Field(pattern=r"^[a-z0-9_]+\.pdf$")
     manual: bool = False
     sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    # Regexes matched against heading titles; matching sections (e.g. quizzes) are never indexed.
+    exclude_sections: list[str] = []
 
 
 def load_manifest(path: Path) -> list[SourceDocument]:

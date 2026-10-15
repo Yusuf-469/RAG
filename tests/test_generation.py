@@ -162,3 +162,34 @@ def test_api_key_is_hidden_in_settings_repr(monkeypatch: pytest.MonkeyPatch) -> 
     cfg = Settings(_env_file=None)
     assert cfg.groq_api_key.get_secret_value() == "gsk_do_not_print"
     assert "gsk_do_not_print" not in repr(cfg)
+
+
+@pytest.mark.parametrize(
+    "raw, expected",
+    [
+        ("BP ≥ 140 mmHg【1】.", "BP ≥ 140 mmHg[1]."),           # gpt-oss style + narrow no-break space
+        ("Text【2†L3-L5】 more【1】", "Text[2] more[1]"),             # gpt-oss line references dropped
+        ("See [1, 3].", "See [1][3]."),
+        ("See [2-4].", "See [2][3][4]."),
+        ("Full width ［1］.", "Full width [1]."),
+        ("Plain [1] stays.", "Plain [1] stays."),
+    ],
+)
+def test_normalize_answer_canonicalises_citation_styles(raw: str, expected: str) -> None:
+    from meddoc_rag.generation.answerer import normalize_answer
+
+    assert normalize_answer(raw) == expected
+
+
+def test_gpt_oss_style_citations_are_accepted_end_to_end() -> None:
+    ans = Answerer(StaticRetriever(0.99), FakeLLM("Start at 140 mmHg【1】 and review monthly【2†L1-L2】.")).answer("q")
+    assert not ans.refused
+    assert [c.number for c in ans.citations] == [1, 2]
+    assert "【" not in ans.answer
+
+
+def test_reasoning_model_out_of_tokens_raises(monkeypatch: pytest.MonkeyPatch) -> None:
+    body = {"model": "m", "choices": [{"message": {"content": ""}, "finish_reason": "length"}]}
+    monkeypatch.setattr(requests, "post", lambda *a, **k: FakeHTTP(200, body))
+    with pytest.raises(LLMError, match="raise llm_max_tokens"):
+        GroqClient("gsk_x", "m").generate([{"role": "user", "content": "x"}], max_tokens=10)

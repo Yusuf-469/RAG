@@ -9,6 +9,7 @@ Three layers keep answers grounded:
 
 import re
 import time
+import unicodedata
 
 from pydantic import BaseModel
 
@@ -22,6 +23,9 @@ DISCLAIMER = (
     "Consult a qualified healthcare professional and the original guideline."
 )
 _CITATION = re.compile(r"\[(\d+)\]")
+# gpt-oss cites as 【1】 or 【1†L3-L5】; others write [1, 2] or [1-3]. All become [1][2]...
+_LENTICULAR = re.compile(r"【\s*([\d\s,–-]+?)\s*(?:†[^】]*)?】")
+_GROUPED = re.compile(r"\[\s*(\d+(?:\s*[,–-]\s*\d+)+)\s*\]")
 
 
 class Citation(BaseModel):
@@ -52,6 +56,25 @@ class Answer(BaseModel):
     model: str | None = None
     latency_ms: dict[str, float] = {}
     disclaimer: str = DISCLAIMER
+
+
+def _expand(group: str) -> str:
+    """'1, 3' -> '[1][3]'; '2-4' -> '[2][3][4]' (ranges capped to avoid abuse)."""
+    nums: list[int] = []
+    for part in re.split(r"\s*,\s*", group.strip()):
+        if m := re.fullmatch(r"(\d+)\s*[–-]\s*(\d+)", part):
+            lo, hi = int(m.group(1)), int(m.group(2))
+            nums.extend(range(lo, hi + 1) if 0 <= hi - lo <= 20 else [lo, hi])
+        elif part.isdigit():
+            nums.append(int(part))
+    return "".join(f"[{n}]" for n in nums)
+
+
+def normalize_answer(text: str) -> str:
+    """NFKC (narrow no-break spaces, full-width ［1］ -> [1]) and one canonical citation style."""
+    text = unicodedata.normalize("NFKC", text)
+    text = _LENTICULAR.sub(lambda m: _expand(m.group(1)), text)
+    return _GROUPED.sub(lambda m: _expand(m.group(1)), text)
 
 
 def parse_citations(text: str, n_sources: int) -> tuple[list[int], list[int]]:
@@ -108,10 +131,11 @@ class Answerer:
         timings["generation"] = resp.latency_ms
         timings["total"] = (time.perf_counter() - t0) * 1000
 
-        if is_refusal(resp.text):
+        text = normalize_answer(resp.text)
+        if is_refusal(text):
             return self._refuse(question, "llm_insufficient_context", sources, timings, top, resp.model)
 
-        valid, invalid = parse_citations(resp.text, len(sources))
+        valid, invalid = parse_citations(text, len(sources))
         if not valid:
             return self._refuse(question, "no_valid_citations", sources, timings, top, resp.model)
 
@@ -123,7 +147,7 @@ class Answerer:
                                       page_start=c.page_start, page_end=c.page_end, section=c.section, score=r.score))
         return Answer(
             question=question,
-            answer=strip_invalid_citations(resp.text, invalid),
+            answer=strip_invalid_citations(text, invalid),
             refused=False,
             citations=citations,
             invalid_citations=invalid,

@@ -34,7 +34,9 @@ def show_chunks(question: str, retriever_name: str, strategy: str, k: int) -> No
 
 
 def show_answer(question: str, retriever_name: str, strategy: str) -> None:
-    ans = make_answerer(retriever_name, strategy).answer(question)
+    answerer = make_answerer(retriever_name, strategy)
+    answerer.retriever.retrieve("warm-up", 1)  # load embedding/reranker weights outside the timed call
+    ans = answerer.answer(question)
     print(f"\nQ: {question}\n")
     print(textwrap.fill(ans.answer, 100))
     if ans.refused:

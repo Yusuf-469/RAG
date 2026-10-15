@@ -34,6 +34,7 @@ class ParsedDocument(BaseModel):
     page_labels: list[str | None]   # printed label ("iv", "12") where the PDF has a clean one
     headings: list[Heading]         # sorted by offset
     heading_source: Literal["toc", "font", "none"]
+    excluded: list[tuple[int, int]] = []   # [start, end) ranges never chunked (e.g. quiz sections)
 
     @property
     def num_pages(self) -> int:
