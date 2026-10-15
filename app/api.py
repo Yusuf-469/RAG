@@ -7,7 +7,9 @@ Run:
 Models are loaded once at startup (lifespan), not per request.
 """
 
+import logging
 import time
+import uuid
 from collections.abc import Callable
 from contextlib import asynccontextmanager
 
@@ -18,6 +20,9 @@ from meddoc_rag.config import settings
 from meddoc_rag.generation.answerer import Answer, Answerer
 from meddoc_rag.generation.highlight import highlight
 from meddoc_rag.generation.llm import LLMError
+from meddoc_rag.monitoring import LatencyTracker, configure_logging, question_fingerprint
+
+log = logging.getLogger("meddoc_rag.api")
 
 
 class AskRequest(BaseModel):
@@ -109,7 +114,12 @@ def _index_size(answerer: Answerer) -> int | None:
 def create_app(answerer_factory: Callable[[], Answerer] = _default_answerer) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
+        configure_logging(settings.log_level, settings.log_json)
+        t0 = time.perf_counter()
         app.state.answerer = answerer_factory()
+        app.state.tracker = LatencyTracker()
+        log.info("startup", extra={"fields": {"event": "startup", "load_ms": round((time.perf_counter() - t0) * 1000),
+                                              "retriever": app.state.answerer.retriever.name}})
         yield
 
     app = FastAPI(
@@ -118,6 +128,24 @@ def create_app(answerer_factory: Callable[[], Answerer] = _default_answerer) -> 
         version="0.1.0",
         lifespan=lifespan,
     )
+
+    @app.middleware("http")
+    async def access_log(request: Request, call_next):
+        """Attach a request id (returned as X-Request-ID) and log method, path, status and latency."""
+        request_id = request.headers.get("x-request-id") or uuid.uuid4().hex[:12]
+        request.state.request_id = request_id
+        t0 = time.perf_counter()
+        response = await call_next(request)
+        response.headers["X-Request-ID"] = request_id
+        log.info("http", extra={"fields": {"event": "http", "request_id": request_id, "method": request.method,
+                                           "path": request.url.path, "status": response.status_code,
+                                           "ms": round((time.perf_counter() - t0) * 1000, 1)}})
+        return response
+
+    @app.get("/metrics")
+    def metrics(request: Request) -> dict:
+        """Rolling latency percentiles per stage, refusal rate and LLM cache-hit rate (last 1,000 requests)."""
+        return request.app.state.tracker.summary()
 
     @app.get("/health", response_model=HealthResponse)
     def health(request: Request) -> HealthResponse:
@@ -130,11 +158,21 @@ def create_app(answerer_factory: Callable[[], Answerer] = _default_answerer) -> 
     @app.post("/ask", response_model=AskResponse)
     def ask(body: AskRequest, request: Request) -> AskResponse:
         t0 = time.perf_counter()
+        question = body.question.strip()
+        fields = {"event": "ask", "request_id": getattr(request.state, "request_id", None), **question_fingerprint(question)}
         try:
-            ans = request.app.state.answerer.answer(body.question.strip())
+            ans = request.app.state.answerer.answer(question)
         except LLMError as exc:
+            log.error("llm_unavailable", extra={"fields": {**fields, "error": str(exc)[:200]}})
             raise HTTPException(status_code=503, detail=f"Language model unavailable: {exc}") from exc
-        return to_response(ans, (time.perf_counter() - t0) * 1000)
+        resp = to_response(ans, (time.perf_counter() - t0) * 1000)
+        request.app.state.tracker.record(resp.latency_ms, ans.refused, ans.llm_cached)
+        log.info("ask", extra={"fields": {**fields, "refused": ans.refused, "refusal_reason": ans.refusal_reason,
+                                          "top_score": ans.top_score, "citations": len(ans.citations),
+                                          "invalid_citations": len(ans.invalid_citations), "model": ans.model,
+                                          "llm_cached": ans.llm_cached,
+                                          "latency_ms": {k: round(v, 1) for k, v in resp.latency_ms.items()}}})
+        return resp
 
     return app
 

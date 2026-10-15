@@ -95,3 +95,27 @@ def test_highlight_picks_overlapping_sentence_only() -> None:
 
 def test_sentence_spans_trim_and_cover() -> None:
     assert [TEXT[s:e] for s, e in sentence_spans(TEXT)][-1] == "Follow up monthly."
+
+
+def test_request_id_header_and_metrics() -> None:
+    with client() as c:
+        r = c.post("/ask", json={"question": "When should treatment start?"}, headers={"X-Request-ID": "abc123"})
+        assert r.headers["X-Request-ID"] == "abc123"
+        assert len(c.get("/health").headers["X-Request-ID"]) == 12      # generated when absent
+        c.post("/ask", json={"question": "When should treatment start?"})
+        m = c.get("/metrics").json()
+    assert m["requests"] == 2 and m["refusal_rate"] == 0.0
+    assert {"retrieval", "generation", "server_total"} <= set(m["latency_ms"])
+    assert m["latency_ms"]["retrieval"]["p50"] == 5.0
+
+
+def test_logs_never_contain_question_text(caplog: pytest.LogCaptureFixture) -> None:
+    import logging
+
+    secret = "Is my rare condition XYZ-123 treatable?"
+    with client() as c:
+        logging.getLogger().addHandler(caplog.handler)   # configure_logging replaced root handlers at startup
+        c.post("/ask", json={"question": secret})
+    ask_logs = [r for r in caplog.records if getattr(r, "fields", {}).get("event") == "ask"]
+    assert ask_logs and ask_logs[0].fields["question_chars"] == len(secret)
+    assert all(secret not in str(getattr(r, "fields", "")) and secret not in r.getMessage() for r in caplog.records)

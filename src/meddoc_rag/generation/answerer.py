@@ -54,6 +54,7 @@ class Answer(BaseModel):
     sources: list[RetrievedChunk] = []
     top_score: float | None = None
     model: str | None = None
+    llm_cached: bool | None = None      # None when the LLM was not called
     latency_ms: dict[str, float] = {}
     disclaimer: str = DISCLAIMER
 
@@ -113,9 +114,10 @@ class Answerer:
         self.temperature = temperature
         self.max_tokens = max_tokens
 
-    def _refuse(self, question: str, reason: str, sources: list[RetrievedChunk], timings: dict, top: float | None, model: str | None = None) -> Answer:
+    def _refuse(self, question: str, reason: str, sources: list[RetrievedChunk], timings: dict, top: float | None,
+                model: str | None = None, cached: bool | None = None) -> Answer:
         return Answer(question=question, answer=REFUSAL, refused=True, refusal_reason=reason,
-                      sources=sources, top_score=top, model=model, latency_ms=timings)
+                      sources=sources, top_score=top, model=model, llm_cached=cached, latency_ms=timings)
 
     def answer(self, question: str) -> Answer:
         t0 = time.perf_counter()
@@ -133,11 +135,11 @@ class Answerer:
 
         text = normalize_answer(resp.text)
         if is_refusal(text):
-            return self._refuse(question, "llm_insufficient_context", sources, timings, top, resp.model)
+            return self._refuse(question, "llm_insufficient_context", sources, timings, top, resp.model, resp.cached)
 
         valid, invalid = parse_citations(text, len(sources))
         if not valid:
-            return self._refuse(question, "no_valid_citations", sources, timings, top, resp.model)
+            return self._refuse(question, "no_valid_citations", sources, timings, top, resp.model, resp.cached)
 
         citations = []
         for n in valid:
@@ -154,5 +156,6 @@ class Answerer:
             sources=sources,
             top_score=top,
             model=resp.model,
+            llm_cached=resp.cached,
             latency_ms=timings,
         )

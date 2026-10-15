@@ -1,5 +1,7 @@
 # MedDoc RAG
 
+[![CI](https://github.com/Yusuf-469/RAG/actions/workflows/ci.yml/badge.svg)](https://github.com/Yusuf-469/RAG/actions/workflows/ci.yml)
+
 Citation-grounded question answering over public healthcare guidelines (WHO, CDC, NIH),
 with a measurable retrieval-evaluation harness.
 
@@ -22,6 +24,12 @@ uvicorn app.api:app --port 8000      # API; interactive docs at http://127.0.0.1
 streamlit run app/ui.py              # UI at http://127.0.0.1:8501
 python scripts/ask.py "How much physical activity should older adults do?"   # CLI
 pytest
+```
+
+### Docker
+
+```bash
+docker compose up --build            # needs data/ built and .env with GROQ_API_KEY (see docker-compose.yml)
 ```
 
 **Disclaimer:** for educational purposes only. Not medical advice.

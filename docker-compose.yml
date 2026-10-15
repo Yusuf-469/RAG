@@ -1,0 +1,33 @@
+# Prerequisites on the host:
+#   1. data/ built: python scripts/download_docs.py && python scripts/build_chunks.py && python scripts/build_index.py
+#   2. .env containing GROQ_API_KEY (copy .env.example)
+# Then: docker compose up --build   ->  UI http://127.0.0.1:8501, API http://127.0.0.1:8000/docs
+services:
+  api:
+    build: .
+    image: meddoc-rag:latest
+    env_file: .env                  # API key injected at runtime, never baked into the image
+    volumes:
+      - ./data:/app/data            # indexes, caches (LLM response cache persists across restarts)
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 60s             # model loading at startup
+    restart: unless-stopped
+
+  ui:
+    image: meddoc-rag:latest
+    command: ["streamlit", "run", "app/ui.py", "--server.address=0.0.0.0", "--server.port=8501",
+              "--server.headless=true", "--browser.gatherUsageStats=false"]
+    environment:
+      MEDDOC_API_URL: http://api:8000   # service name on the compose network
+    ports:
+      - "8501:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped

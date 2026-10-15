@@ -21,6 +21,10 @@ class Settings(BaseSettings):
 
     data_dir: Path = PROJECT_ROOT / "data"
 
+    # Logging
+    log_level: str = "INFO"
+    log_json: bool = True
+
     # Embedding model; its tokenizer also defines chunk length (bge-small truncates at 512 tokens).
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     # bge is trained asymmetrically: queries get this instruction, passages get none.
