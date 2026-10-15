@@ -1,0 +1,5198 @@
+{
+  "meta": {
+    "timestamp": "20261015-202416",
+    "n_questions": 48,
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "chunk_max_tokens": 256,
+    "chunk_overlap_tokens": 32,
+    "rerank_candidates": 30,
+    "relevance": "chunk covers >=50% of a gold quote's characters"
+  },
+  "rows": [
+    {
+      "strategy": "fixed",
+      "retriever": "dense",
+      "hit@1": 0.4583333333333333,
+      "hit@3": 0.6041666666666666,
+      "hit@5": 0.7708333333333334,
+      "hit@10": 0.7708333333333334,
+      "hit@30": 0.9583333333333334,
+      "mrr@10": 0.5708333333333333,
+      "wrong_doc@1": 0.041666666666666664,
+      "latency_ms_p50": 18.162849999498576,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.5
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.8333333333333334
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.8333333333333334
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.6363636363636364
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.27"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.59"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "who_hypertension_2021 p.20"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 16,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.35"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 2,
+          "top1": "who_physical_activity_2020 p.71"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_physical_activity_2020 p.71"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": null,
+          "top1": "who_sugars_2015 p.9"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 11,
+          "top1": "usda_dietary_guidelines_2020 p.55"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.101"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 5,
+          "top1": "who_sugars_2015 p.20"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 4,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.79"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 11,
+          "top1": "usda_dietary_guidelines_2020 p.113"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.62"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 4,
+          "top1": "usda_dietary_guidelines_2020 p.162"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.32"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 14,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.82"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 15,
+          "top1": "nhlbi_asthma_2020 p.303"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 4,
+          "top1": "nhlbi_asthma_2020 p.126"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 20,
+          "top1": "nhlbi_asthma_2020 p.115"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 22,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 11,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.51"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 14,
+          "top1": "cdc_hand_hygiene_2002 p.19"
+        }
+      ]
+    },
+    {
+      "strategy": "fixed",
+      "retriever": "bm25",
+      "hit@1": 0.4583333333333333,
+      "hit@3": 0.7083333333333334,
+      "hit@5": 0.8125,
+      "hit@10": 0.9166666666666666,
+      "hit@30": 0.9791666666666666,
+      "mrr@10": 0.598313492063492,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 7.983800001966301,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.5
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.8888888888888888
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.8333333333333334
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 0.6666666666666666
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.19"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.30"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "who_hypertension_2021 p.13"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 5,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 5,
+          "top1": "who_physical_activity_2020 p.26"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.131"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.23"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 13,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 28,
+          "top1": "usda_dietary_guidelines_2020 p.12"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.131"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 9,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.56"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.32"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_opioids_2022 p.22"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 7,
+          "top1": "cdc_opioids_2022 p.19"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 7,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.55"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": 20,
+          "top1": "nhlbi_asthma_2020 p.81"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.97"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 9,
+          "top1": "cdc_hand_hygiene_2002 p.15"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 9,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.51"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "fixed",
+      "retriever": "hybrid",
+      "hit@1": 0.4791666666666667,
+      "hit@3": 0.6875,
+      "hit@5": 0.7708333333333334,
+      "hit@10": 0.875,
+      "hit@30": 0.9791666666666666,
+      "mrr@10": 0.6119378306878307,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 23.721150000710622,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.25
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.8333333333333334
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.9166666666666666
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.6363636363636364
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.27"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "who_hypertension_2021 p.19"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.30"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.56"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 11,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "who_physical_activity_2020 p.20"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 15,
+          "top1": "who_sugars_2015 p.12"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 4,
+          "top1": "who_sugars_2015 p.12"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 7,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 14,
+          "top1": "usda_dietary_guidelines_2020 p.111"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.62"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.56"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.32"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.22"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 3,
+          "top1": "cdc_opioids_2022 p.24"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 9,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.86"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 6,
+          "top1": "nhlbi_asthma_2020 p.303"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.126"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 13,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 7,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 3,
+          "top1": "cdc_hand_hygiene_2002 p.15"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 7,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.51"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 30,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "fixed",
+      "retriever": "dense+rerank",
+      "hit@1": 0.5625,
+      "hit@3": 0.8125,
+      "hit@5": 0.8333333333333334,
+      "hit@10": 0.9375,
+      "hit@30": null,
+      "mrr@10": 0.6869212962962963,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 649.6694500001468,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.25
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.75
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.35"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.74"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.18"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": null,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 2,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.12"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 9,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 9,
+          "top1": "usda_dietary_guidelines_2020 p.109"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.62"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.56"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.32"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.55"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.82"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.15"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.86"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 6,
+          "top1": "cdc_isolation_2007 p.73"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 2,
+          "top1": "cdc_hand_hygiene_2002 p.14"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 6,
+          "top1": "cdc_hand_hygiene_2002 p.4"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.51"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 6,
+          "top1": "cdc_hand_hygiene_2002 p.20"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.100"
+        }
+      ]
+    },
+    {
+      "strategy": "fixed",
+      "retriever": "hybrid+rerank",
+      "hit@1": 0.5416666666666666,
+      "hit@3": 0.8333333333333334,
+      "hit@5": 0.8541666666666666,
+      "hit@10": 0.9375,
+      "hit@30": null,
+      "mrr@10": 0.6846064814814815,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 664.2484499989223,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.5
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.75
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.37"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.35"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.74"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.18"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 2,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 2,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.12"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": null,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 9,
+          "top1": "usda_dietary_guidelines_2020 p.109"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.62"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.56"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.32"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.55"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.82"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.15"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.86"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 6,
+          "top1": "cdc_isolation_2007 p.73"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 2,
+          "top1": "cdc_hand_hygiene_2002 p.14"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 6,
+          "top1": "cdc_hand_hygiene_2002 p.4"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.51"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 6,
+          "top1": "cdc_hand_hygiene_2002 p.20"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.100"
+        }
+      ]
+    },
+    {
+      "strategy": "recursive",
+      "retriever": "dense",
+      "hit@1": 0.5208333333333334,
+      "hit@3": 0.75,
+      "hit@5": 0.8541666666666666,
+      "hit@10": 0.9166666666666666,
+      "hit@30": 0.9791666666666666,
+      "mrr@10": 0.6460069444444444,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 18.997450000824756,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.8888888888888888
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.9166666666666666
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 0.6666666666666666
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 26,
+          "top1": "who_hypertension_2021 p.19"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.23"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.29"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "who_hypertension_2021 p.56"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 5,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.35"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_physical_activity_2020 p.54"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 2,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.15"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.101"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.115"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.79"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 5,
+          "top1": "usda_dietary_guidelines_2020 p.95"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.62"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.57"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 8,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.58"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 5,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.82"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 6,
+          "top1": "nhlbi_asthma_2020 p.321"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 12,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 6,
+          "top1": "cdc_hand_hygiene_2002 p.32"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 19,
+          "top1": "cdc_hand_hygiene_2002 p.27"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        }
+      ]
+    },
+    {
+      "strategy": "recursive",
+      "retriever": "bm25",
+      "hit@1": 0.5833333333333334,
+      "hit@3": 0.7708333333333334,
+      "hit@5": 0.8541666666666666,
+      "hit@10": 0.9375,
+      "hit@30": 0.9791666666666666,
+      "mrr@10": 0.6973048941798942,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 8.90350000008766,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.9444444444444444
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.8333333333333334
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.7272727272727273
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 6,
+          "top1": "who_hypertension_2021 p.19"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "who_hypertension_2021 p.55"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 10,
+          "top1": "who_hypertension_2021 p.56"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.25"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 3,
+          "top1": "who_physical_activity_2020 p.79"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.41"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 2,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 11,
+          "top1": "usda_dietary_guidelines_2020 p.12"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.13"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 7,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.57"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "cdc_opioids_2022 p.22"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 4,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.58"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": 21,
+          "top1": "nhlbi_asthma_2020 p.83"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.96"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.93"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.70"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 4,
+          "top1": "cdc_hand_hygiene_2002 p.15"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 9,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "recursive",
+      "retriever": "hybrid",
+      "hit@1": 0.6041666666666666,
+      "hit@3": 0.8333333333333334,
+      "hit@5": 0.8541666666666666,
+      "hit@10": 0.9375,
+      "hit@30": 0.9791666666666666,
+      "mrr@10": 0.7147569444444445,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 34.022949999780394,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.8333333333333334
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.7272727272727273
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 0.6666666666666666
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 13,
+          "top1": "who_hypertension_2021 p.19"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.23"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.19"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "who_hypertension_2021 p.56"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.35"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.79"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 6,
+          "top1": "usda_dietary_guidelines_2020 p.59"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.62"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.57"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 3,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.58"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.149"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.83"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.126"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 8,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.93"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 6,
+          "top1": "cdc_hand_hygiene_2002 p.15"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 10,
+          "top1": "cdc_hand_hygiene_2002 p.21"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 12,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "recursive",
+      "retriever": "dense+rerank",
+      "hit@1": 0.5833333333333334,
+      "hit@3": 0.7916666666666666,
+      "hit@5": 0.8958333333333334,
+      "hit@10": 0.9166666666666666,
+      "hit@30": null,
+      "mrr@10": 0.7060763888888889,
+      "wrong_doc@1": 0.0,
+      "latency_ms_p50": 650.5147499974555,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.9166666666666666
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 0.6666666666666666
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": null,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.29"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.25"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.10"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.41"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.90"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 4,
+          "top1": "usda_dietary_guidelines_2020 p.59"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.131"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 5,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.57"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.30"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 8,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.81"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.15"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.86"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": null,
+          "top1": "cdc_hand_hygiene_2002 p.14"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": null,
+          "top1": "cdc_hand_hygiene_2002 p.27"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        }
+      ]
+    },
+    {
+      "strategy": "recursive",
+      "retriever": "hybrid+rerank",
+      "hit@1": 0.5833333333333334,
+      "hit@3": 0.7916666666666666,
+      "hit@5": 0.8958333333333334,
+      "hit@10": 0.9166666666666666,
+      "hit@30": null,
+      "mrr@10": 0.7060763888888889,
+      "wrong_doc@1": 0.0,
+      "latency_ms_p50": 647.5769999997283,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.9166666666666666
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 0.6666666666666666
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": null,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.29"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.25"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.10"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.41"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.90"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 4,
+          "top1": "usda_dietary_guidelines_2020 p.59"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.131"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 5,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.57"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.30"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 8,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.81"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.15"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.86"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": null,
+          "top1": "cdc_hand_hygiene_2002 p.14"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": null,
+          "top1": "cdc_hand_hygiene_2002 p.27"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        }
+      ]
+    },
+    {
+      "strategy": "section",
+      "retriever": "dense",
+      "hit@1": 0.5,
+      "hit@3": 0.7708333333333334,
+      "hit@5": 0.8958333333333334,
+      "hit@10": 0.9375,
+      "hit@30": 0.9791666666666666,
+      "mrr@10": 0.6528025793650793,
+      "wrong_doc@1": 0.041666666666666664,
+      "latency_ms_p50": 21.22495000003255,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.8888888888888888
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 1.0
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.18"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.23"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.28"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.29"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.20"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 4,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.10"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_physical_activity_2020 p.54"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 4,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.15"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.101"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 7,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.79"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.92"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.117"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.115"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.44"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 8,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.58"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.82"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.23"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 5,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 11,
+          "top1": "cdc_hand_hygiene_2002 p.27"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.35"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 25,
+          "top1": "cdc_isolation_2007 p.203"
+        }
+      ]
+    },
+    {
+      "strategy": "section",
+      "retriever": "bm25",
+      "hit@1": 0.4375,
+      "hit@3": 0.7083333333333334,
+      "hit@5": 0.7916666666666666,
+      "hit@10": 0.9166666666666666,
+      "hit@30": 0.9791666666666666,
+      "mrr@10": 0.5890625,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 6.476349999502418,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.5
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.9444444444444444
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.75
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.7272727272727273
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 0.6666666666666666
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.23"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.28"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 9,
+          "top1": "who_hypertension_2021 p.56"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_hypertension_2021 p.5"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "who_physical_activity_2020 p.20"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.74"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 4,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 15,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 9,
+          "top1": "usda_dietary_guidelines_2020 p.12"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.13"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 10,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 10,
+          "top1": "usda_dietary_guidelines_2020 p.33"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "cdc_opioids_2022 p.22"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 12,
+          "top1": "cdc_opioids_2022 p.8"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 4,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.58"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": 22,
+          "top1": "nhlbi_asthma_2020 p.81"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.97"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.40"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.86"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 9,
+          "top1": "cdc_hand_hygiene_2002 p.15"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 8,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.35"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "section",
+      "retriever": "hybrid",
+      "hit@1": 0.5208333333333334,
+      "hit@3": 0.7708333333333334,
+      "hit@5": 0.9166666666666666,
+      "hit@10": 0.9583333333333334,
+      "hit@30": 0.9583333333333334,
+      "mrr@10": 0.6684275793650793,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 31.79084999828774,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 0.9166666666666666
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.18"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.23"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.28"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "who_hypertension_2021 p.38"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "who_hypertension_2021 p.56"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.10"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 4,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 5,
+          "top1": "usda_dietary_guidelines_2020 p.59"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.62"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 4,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.94"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 7,
+          "top1": "cdc_opioids_2022 p.24"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 4,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.58"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 4,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.82"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.126"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 5,
+          "top1": "cdc_hand_hygiene_2002 p.15"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 8,
+          "top1": "cdc_hand_hygiene_2002 p.21"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.35"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "section",
+      "retriever": "dense+rerank",
+      "hit@1": 0.5833333333333334,
+      "hit@3": 0.8958333333333334,
+      "hit@5": 0.9583333333333334,
+      "hit@10": 0.9791666666666666,
+      "hit@30": null,
+      "mrr@10": 0.7407986111111111,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 626.3521999990189,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 1.0
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 1.0
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.28"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.29"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.20"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.25"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.10"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.18"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.92"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.117"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 5,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.92"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.30"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 8,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.81"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.106"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.15"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.86"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 2,
+          "top1": "cdc_hand_hygiene_2002 p.14"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 3,
+          "top1": "cdc_hand_hygiene_2002 p.27"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.81"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.35"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "section",
+      "retriever": "hybrid+rerank",
+      "hit@1": 0.5833333333333334,
+      "hit@3": 0.875,
+      "hit@5": 0.9375,
+      "hit@10": 0.9583333333333334,
+      "hit@30": null,
+      "mrr@10": 0.7346064814814814,
+      "wrong_doc@1": 0.020833333333333332,
+      "latency_ms_p50": 658.6690500007535,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 1.0
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 1.0
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 1.0
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.7272727272727273
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "who_hypertension_2021 p.9"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.10"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.28"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.29"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.20"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.25"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.10"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.53"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.11"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.18"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.15"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 3,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.75"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.92"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.117"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 5,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.92"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.30"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 9,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.52"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.81"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.106"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 2,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 2,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.15"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.86"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 2,
+          "top1": "cdc_hand_hygiene_2002 p.14"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 4,
+          "top1": "cdc_hand_hygiene_2002 p.27"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.81"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.35"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_isolation_2007 p.99"
+        }
+      ]
+    },
+    {
+      "strategy": "section",
+      "retriever": "dense (no query instruction)",
+      "hit@1": 0.5416666666666666,
+      "hit@3": 0.75,
+      "hit@5": 0.9166666666666666,
+      "hit@10": 0.9375,
+      "hit@30": 0.9583333333333334,
+      "mrr@10": 0.658531746031746,
+      "wrong_doc@1": 0.041666666666666664,
+      "latency_ms_p50": 21.37754999967001,
+      "by_type": {
+        "confusable": {
+          "n": 4,
+          "hit@5": 0.75
+        },
+        "fact": {
+          "n": 18,
+          "hit@5": 0.9444444444444444
+        },
+        "number": {
+          "n": 12,
+          "hit@5": 1.0
+        },
+        "paraphrase": {
+          "n": 11,
+          "hit@5": 0.8181818181818182
+        },
+        "regression": {
+          "n": 3,
+          "hit@5": 1.0
+        }
+      },
+      "per_question": [
+        {
+          "id": "htn-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.18"
+        },
+        {
+          "id": "htn-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.23"
+        },
+        {
+          "id": "htn-03",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.28"
+        },
+        {
+          "id": "htn-04",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.29"
+        },
+        {
+          "id": "htn-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.11"
+        },
+        {
+          "id": "htn-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "who_hypertension_2021 p.20"
+        },
+        {
+          "id": "htn-07",
+          "type": "fact",
+          "rank": 4,
+          "top1": "who_hypertension_2021 p.26"
+        },
+        {
+          "id": "pa-01",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.10"
+        },
+        {
+          "id": "pa-02",
+          "type": "fact",
+          "rank": 4,
+          "top1": "who_physical_activity_2020 p.23"
+        },
+        {
+          "id": "pa-03",
+          "type": "regression",
+          "rank": 5,
+          "top1": "who_physical_activity_2020 p.14"
+        },
+        {
+          "id": "pa-04",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.132"
+        },
+        {
+          "id": "pa-05",
+          "type": "fact",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.21"
+        },
+        {
+          "id": "pa-06",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_physical_activity_2020 p.62"
+        },
+        {
+          "id": "sug-01",
+          "type": "confusable",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-02",
+          "type": "number",
+          "rank": 1,
+          "top1": "who_sugars_2015 p.24"
+        },
+        {
+          "id": "sug-03",
+          "type": "paraphrase",
+          "rank": 2,
+          "top1": "usda_dietary_guidelines_2020 p.101"
+        },
+        {
+          "id": "sug-04",
+          "type": "fact",
+          "rank": 7,
+          "top1": "who_sugars_2015 p.11"
+        },
+        {
+          "id": "dga-01",
+          "type": "confusable",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.54"
+        },
+        {
+          "id": "dga-02",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.79"
+        },
+        {
+          "id": "dga-03",
+          "type": "number",
+          "rank": 4,
+          "top1": "usda_dietary_guidelines_2020 p.92"
+        },
+        {
+          "id": "dga-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.117"
+        },
+        {
+          "id": "dga-05",
+          "type": "fact",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-06",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "usda_dietary_guidelines_2020 p.69"
+        },
+        {
+          "id": "dga-07",
+          "type": "number",
+          "rank": 3,
+          "top1": "usda_dietary_guidelines_2020 p.115"
+        },
+        {
+          "id": "opi-01",
+          "type": "regression",
+          "rank": 2,
+          "top1": "cdc_opioids_2022 p.34"
+        },
+        {
+          "id": "opi-02",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.13"
+        },
+        {
+          "id": "opi-03",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "cdc_opioids_2022 p.41"
+        },
+        {
+          "id": "opi-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.42"
+        },
+        {
+          "id": "opi-05",
+          "type": "fact",
+          "rank": 3,
+          "top1": "cdc_opioids_2022 p.49"
+        },
+        {
+          "id": "opi-06",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.54"
+        },
+        {
+          "id": "opi-07",
+          "type": "paraphrase",
+          "rank": 1,
+          "top1": "cdc_opioids_2022 p.58"
+        },
+        {
+          "id": "ast-01",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.50"
+        },
+        {
+          "id": "ast-02",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.58"
+        },
+        {
+          "id": "ast-03",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "nhlbi_asthma_2020 p.82"
+        },
+        {
+          "id": "ast-04",
+          "type": "fact",
+          "rank": 1,
+          "top1": "nhlbi_asthma_2020 p.101"
+        },
+        {
+          "id": "ast-05",
+          "type": "fact",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.23"
+        },
+        {
+          "id": "ast-06",
+          "type": "paraphrase",
+          "rank": 3,
+          "top1": "nhlbi_asthma_2020 p.70"
+        },
+        {
+          "id": "ast-07",
+          "type": "fact",
+          "rank": 5,
+          "top1": "nhlbi_asthma_2020 p.94"
+        },
+        {
+          "id": "iso-01",
+          "type": "number",
+          "rank": 3,
+          "top1": "cdc_isolation_2007 p.74"
+        },
+        {
+          "id": "iso-02",
+          "type": "fact",
+          "rank": 4,
+          "top1": "cdc_isolation_2007 p.139"
+        },
+        {
+          "id": "iso-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.71"
+        },
+        {
+          "id": "iso-04",
+          "type": "paraphrase",
+          "rank": 5,
+          "top1": "cdc_isolation_2007 p.72"
+        },
+        {
+          "id": "iso-05",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.19"
+        },
+        {
+          "id": "hh-01",
+          "type": "regression",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.34"
+        },
+        {
+          "id": "hh-02",
+          "type": "confusable",
+          "rank": 13,
+          "top1": "cdc_hand_hygiene_2002 p.21"
+        },
+        {
+          "id": "hh-03",
+          "type": "fact",
+          "rank": 1,
+          "top1": "cdc_isolation_2007 p.52"
+        },
+        {
+          "id": "hh-04",
+          "type": "number",
+          "rank": 1,
+          "top1": "cdc_hand_hygiene_2002 p.35"
+        },
+        {
+          "id": "hh-05",
+          "type": "paraphrase",
+          "rank": null,
+          "top1": "cdc_isolation_2007 p.203"
+        }
+      ]
+    }
+  ]
+}

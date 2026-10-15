@@ -35,7 +35,9 @@ class Settings(BaseSettings):
 
     # Retrieval
     top_k: int = 5
-    retriever: str = "hybrid+rerank"
+    # Measured (eval/results/retrieval_20261015-202416): dense+rerank 95.8% Hit@5 vs hybrid+rerank 93.8%;
+    # the difference is not significant (bootstrap CI includes 0), so the simpler pipeline is the default.
+    retriever: str = "dense+rerank"
     hybrid_candidates: int = 50   # results taken from each retriever before fusion
     rrf_k: int = 60
 
