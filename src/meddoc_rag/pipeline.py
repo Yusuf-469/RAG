@@ -66,3 +66,32 @@ def load_retriever(
             rrf_k=cfg.rrf_k,
         )
     raise ValueError(f"unknown retriever {name!r}; choose from {RETRIEVERS}")
+
+
+def make_llm(cfg: Settings = settings, use_cache: bool = True):
+    """LLM client for `cfg.llm_provider`, wrapped in the response cache by default."""
+    from meddoc_rag.generation.llm import CachedLLM, GroqClient, OllamaClient
+
+    if cfg.llm_provider == "groq":
+        key = cfg.groq_api_key.get_secret_value() if cfg.groq_api_key else ""
+        client = GroqClient(key, cfg.llm_model, cfg.groq_base_url)
+    else:
+        client = OllamaClient(cfg.llm_model, cfg.ollama_base_url)
+    return CachedLLM(client, cfg.llm_cache_path) if use_cache else client
+
+
+def make_answerer(retriever_name: str | None = None, strategy: str | None = None, cfg: Settings = settings):
+    """Full question-answering pipeline. The refusal gate is only applied to reranked
+    retrievers, because only the cross-encoder score is on a fixed scale across queries."""
+    from meddoc_rag.generation.answerer import Answerer
+
+    name = retriever_name or cfg.retriever
+    retriever = load_retriever(name, strategy or cfg.chunk_strategy, cfg=cfg)
+    return Answerer(
+        retriever,
+        make_llm(cfg),
+        context_chunks=cfg.context_chunks,
+        refusal_threshold=cfg.refusal_threshold if name.endswith("+rerank") else None,
+        temperature=cfg.llm_temperature,
+        max_tokens=cfg.llm_max_tokens,
+    )

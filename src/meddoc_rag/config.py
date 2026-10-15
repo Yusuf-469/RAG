@@ -5,7 +5,9 @@ not by editing code. Later milestones add model names, top-k, thresholds, etc.
 """
 
 from pathlib import Path
+from typing import Literal
 
+from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -14,7 +16,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 class Settings(BaseSettings):
     """Application settings. Override any field with an env var prefixed `MEDDOC_`."""
 
-    model_config = SettingsConfigDict(env_prefix="MEDDOC_", env_file=".env", extra="ignore")
+    # Absolute path: scripts work from any working directory, not only the repo root.
+    model_config = SettingsConfigDict(env_prefix="MEDDOC_", env_file=PROJECT_ROOT / ".env", extra="ignore")
 
     data_dir: Path = PROJECT_ROOT / "data"
 
@@ -40,6 +43,20 @@ class Settings(BaseSettings):
     reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
     rerank_candidates: int = 30   # first-stage results rescored by the cross-encoder
 
+    # Generation
+    llm_provider: Literal["groq", "ollama"] = "groq"
+    llm_model: str = "llama-3.3-70b-versatile"
+    llm_temperature: float = 0.0      # deterministic answers -> reproducible evaluation
+    llm_max_tokens: int = 600
+    context_chunks: int = 5           # chunks shown to the LLM
+    # Refuse without calling the LLM when the top reranker score (sigmoid) is below this.
+    # Initial value from a 4-question preview (answerable ~0.9998, out-of-scope <=0.09); tuned in eval.
+    refusal_threshold: float = 0.5
+    # Standard env var name, read with or without the MEDDOC_ prefix. SecretStr hides it in logs/reprs.
+    groq_api_key: SecretStr | None = Field(default=None, validation_alias=AliasChoices("GROQ_API_KEY", "MEDDOC_GROQ_API_KEY"))
+    groq_base_url: str = "https://api.groq.com/openai/v1"
+    ollama_base_url: str = "http://localhost:11434"
+
     @property
     def manifest_path(self) -> Path:
         """YAML list of source documents (URL, checksum, license)."""
@@ -64,6 +81,10 @@ class Settings(BaseSettings):
     @property
     def embedding_cache_path(self) -> Path:
         return self.processed_dir / "embedding_cache.sqlite"
+
+    @property
+    def llm_cache_path(self) -> Path:
+        return self.processed_dir / "llm_cache.sqlite"
 
 
 settings = Settings()
