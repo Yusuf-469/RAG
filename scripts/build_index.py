@@ -1,4 +1,4 @@
-"""Embed chunks and build a FAISS index per chunking strategy.
+"""Build the dense (FAISS) and keyword (BM25) indexes for each chunking strategy.
 
 Usage:
     python scripts/build_index.py                      # all strategies
@@ -14,6 +14,7 @@ import sys
 import time
 
 from meddoc_rag.config import settings
+from meddoc_rag.indexing.bm25_index import BM25Index
 from meddoc_rag.indexing.dense_index import DenseIndex
 from meddoc_rag.ingestion.chunkers import STRATEGIES
 from meddoc_rag.io import read_chunks
@@ -40,7 +41,10 @@ def main() -> int:
         elapsed = time.perf_counter() - t0
         index = DenseIndex(chunks, vectors, embedder.model_name)
         index.save(settings.index_dir(strategy))
-        print(f"{strategy:10} {len(chunks):5} chunks  dim={index.dim}  embed {elapsed:6.1f}s ({len(chunks) / elapsed:5.1f} chunks/s)")
+        t1 = time.perf_counter()
+        BM25Index(chunks).save(settings.index_dir(strategy))
+        bm25_s = time.perf_counter() - t1
+        print(f"{strategy:10} {len(chunks):5} chunks  dim={index.dim}  embed {elapsed:6.1f}s  bm25 {bm25_s:4.1f}s")
     return 0
 
 

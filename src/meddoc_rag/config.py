@@ -32,6 +32,9 @@ class Settings(BaseSettings):
 
     # Retrieval
     top_k: int = 5
+    retriever: str = "hybrid"
+    hybrid_candidates: int = 50   # results taken from each retriever before fusion
+    rrf_k: int = 60
 
     @property
     def manifest_path(self) -> Path:

@@ -88,3 +88,5 @@ class RetrievedChunk(BaseModel):
     score: float
     rank: int
     retriever: str
+    # For fused results: rank of this chunk in each underlying retriever, e.g. {"dense": 7, "bm25": 1}.
+    component_ranks: dict[str, int] = {}

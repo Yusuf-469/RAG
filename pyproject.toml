@@ -18,6 +18,8 @@ dependencies = [
     "numpy>=1.26,<3",
     "faiss-cpu>=1.8,<2",
     "sentence-transformers>=5.0,<6",
+    "rank-bm25>=0.2.2,<0.3",
+    "snowballstemmer>=2.2,<4",
 ]
 
 [project.optional-dependencies]
