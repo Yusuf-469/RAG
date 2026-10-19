@@ -94,4 +94,16 @@ def make_answerer(retriever_name: str | None = None, strategy: str | None = None
         refusal_threshold=cfg.refusal_threshold if name.endswith("+rerank") else None,
         temperature=cfg.llm_temperature,
         max_tokens=cfg.llm_max_tokens,
+        input_guard=make_input_guard(cfg),
+        guard_threshold=cfg.input_guard_threshold,
+        guard_fail_open=cfg.input_guard_fail_open,
     )
+
+
+def make_input_guard(cfg: Settings = settings):
+    """Prompt-injection classifier for user questions (Groq), or None when disabled / no key."""
+    from meddoc_rag.safety import PromptGuard
+
+    if not cfg.input_guard_enabled or not cfg.groq_api_key:
+        return None
+    return PromptGuard(cfg.groq_api_key.get_secret_value(), cfg.input_guard_model, cfg.groq_base_url)

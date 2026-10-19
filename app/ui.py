@@ -22,6 +22,7 @@ EXAMPLES = [
     "Which antibiotic should be used to treat MRSA pneumonia?",  # out of scope: should be refused
 ]
 REFUSAL_REASONS = {
+    "unsafe_input": "The question looks like an attempt to override the assistant's instructions, so it was not processed.",
     "low_retrieval_confidence": "No sufficiently relevant passage was found in the indexed guidelines.",
     "llm_insufficient_context": "Relevant passages were found, but they do not contain the answer.",
     "no_valid_citations": "The draft answer could not be tied to any source, so it was withheld.",
@@ -76,6 +77,8 @@ if st.button("Ask", type="primary", disabled=not question or len(question.strip(
         st.stop()
     data = r.json()
 
+    if data.get("safety_notice"):
+        st.error(f"**Urgent:** {data['safety_notice']}")
     conf = data["confidence"]
     if data["refused"]:
         st.warning(f"**{data['answer']}**  \n{REFUSAL_REASONS.get(data['refusal_reason'], '')}")
@@ -85,6 +88,8 @@ if st.button("Ask", type="primary", disabled=not question or len(question.strip(
         st.markdown("**Sources:** " + " · ".join(f"`[{c['number']}]` {c['label']}" for c in data["citations"]))
         if data["invalid_citations"]:
             st.caption(f"Removed citations to sources that were never provided: {data['invalid_citations']}")
+        if data.get("removed_sentences"):
+            st.caption(f"Removed {len(data['removed_sentences'])} sentence(s) containing links (output safety policy).")
 
     cols = st.columns(4)
     cols[0].metric("Retrieval confidence", "–" if conf is None else f"{conf:.2f}")

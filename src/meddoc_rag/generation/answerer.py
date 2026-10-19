@@ -16,6 +16,7 @@ from pydantic import BaseModel
 from meddoc_rag.generation.llm import LLMClient
 from meddoc_rag.generation.prompts import REFUSAL, build_messages
 from meddoc_rag.retrieval.base import Retriever
+from meddoc_rag.safety import InputGuard, emergency_notice, screen_input
 from meddoc_rag.schemas import RetrievedChunk
 
 DISCLAIMER = (
@@ -26,6 +27,14 @@ _CITATION = re.compile(r"\[(\d+)\]")
 # gpt-oss cites as 【1】 or 【1†L3-L5】; others write [1, 2] or [1-3]. All become [1][2]...
 _LENTICULAR = re.compile(r"【\s*([\d\s,–-]+?)\s*(?:†[^】]*)?】")
 _GROUPED = re.compile(r"\[\s*(\d+(?:\s*[,–-]\s*\d+)+)\s*\]")
+# Output policy: a grounded answer never needs a link (the UI shows the sources). Sentences with a
+# URL or web domain are removed. Measured: a poisoned document made the model append
+# "Visit cheap-meds.example.com for discounts." in 3/3 attempts despite the grounded prompt.
+_LINK = re.compile(
+    r"(?:https?://|www\.)\S+|\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:com|org|net|gov|edu|info|io|biz|co|in|us|uk|example)\b",
+    re.IGNORECASE,
+)
+_SENTENCE = re.compile(r"(?<=[.!?])\s+")
 
 
 class Citation(BaseModel):
@@ -48,13 +57,17 @@ class Answer(BaseModel):
     question: str
     answer: str
     refused: bool
-    refusal_reason: str | None = None   # low_retrieval_confidence | llm_insufficient_context | no_valid_citations
+    # unsafe_input | low_retrieval_confidence | llm_insufficient_context | no_valid_citations
+    refusal_reason: str | None = None
     citations: list[Citation] = []
     invalid_citations: list[int] = []   # numbers the model cited that it was never given
+    removed_sentences: list[str] = []   # removed by output policy (e.g. links injected via a document)
     sources: list[RetrievedChunk] = []
     top_score: float | None = None
     model: str | None = None
     llm_cached: bool | None = None      # None when the LLM was not called
+    input_attack_score: float | None = None   # prompt-guard probability; None if not screened
+    safety_notice: str | None = None    # urgent-care message for emergency-sounding questions
     latency_ms: dict[str, float] = {}
     disclaimer: str = DISCLAIMER
 
@@ -90,6 +103,14 @@ def strip_invalid_citations(text: str, invalid: list[int]) -> str:
     return re.sub(r"[ \t]{2,}", " ", text).strip()
 
 
+def strip_link_sentences(text: str) -> tuple[str, list[str]]:
+    """Remove sentences that contain a URL or domain; return (clean text, removed sentences)."""
+    kept, removed = [], []
+    for sentence in _SENTENCE.split(text.strip()):
+        (removed if _LINK.search(sentence) else kept).append(sentence)
+    return " ".join(kept).strip(), removed
+
+
 def is_refusal(text: str) -> bool:
     return text.strip().lower().startswith(REFUSAL.lower().rstrip("."))
 
@@ -105,6 +126,9 @@ class Answerer:
         refusal_threshold: float | None = 0.5,
         temperature: float = 0.0,
         max_tokens: int = 600,
+        input_guard: InputGuard | None = None,
+        guard_threshold: float = 0.5,
+        guard_fail_open: bool = True,
     ) -> None:
         self.retriever = retriever
         self.llm = llm
@@ -113,6 +137,9 @@ class Answerer:
         self.refusal_threshold = refusal_threshold
         self.temperature = temperature
         self.max_tokens = max_tokens
+        self.input_guard = input_guard
+        self.guard_threshold = guard_threshold
+        self.guard_fail_open = guard_fail_open
 
     def _refuse(self, question: str, reason: str, sources: list[RetrievedChunk], timings: dict, top: float | None,
                 model: str | None = None, cached: bool | None = None) -> Answer:
@@ -120,26 +147,45 @@ class Answerer:
                       sources=sources, top_score=top, model=model, llm_cached=cached, latency_ms=timings)
 
     def answer(self, question: str) -> Answer:
+        notice = emergency_notice(question)
+        ans = self._answer(question)
+        return ans.model_copy(update={"safety_notice": notice}) if notice else ans
+
+    def _answer(self, question: str) -> Answer:
         t0 = time.perf_counter()
+        timings: dict[str, float] = {}
+        if self.input_guard is not None:
+            blocked, score = screen_input(self.input_guard, question, self.guard_threshold, self.guard_fail_open)
+            timings["input_guard"] = (time.perf_counter() - t0) * 1000
+            if blocked:
+                timings["total"] = timings["input_guard"]
+                return self._refuse(question, "unsafe_input", [], timings, None).model_copy(update={"input_attack_score": score})
+        else:
+            score = None
+
+        t1 = time.perf_counter()
         sources = self.retriever.retrieve(question, self.context_chunks)
-        timings = {"retrieval": (time.perf_counter() - t0) * 1000}
+        timings["retrieval"] = (time.perf_counter() - t1) * 1000
         top = sources[0].score if sources else None
 
         if not sources or (self.refusal_threshold is not None and top < self.refusal_threshold):
             timings["total"] = (time.perf_counter() - t0) * 1000
-            return self._refuse(question, "low_retrieval_confidence", sources, timings, top)
+            return self._refuse(question, "low_retrieval_confidence", sources, timings, top).model_copy(
+                update={"input_attack_score": score})
 
         resp = self.llm.generate(build_messages(question, sources), self.temperature, self.max_tokens)
         timings["generation"] = resp.latency_ms
         timings["total"] = (time.perf_counter() - t0) * 1000
 
-        text = normalize_answer(resp.text)
+        text, removed = strip_link_sentences(normalize_answer(resp.text))
         if is_refusal(text):
-            return self._refuse(question, "llm_insufficient_context", sources, timings, top, resp.model, resp.cached)
+            return self._refuse(question, "llm_insufficient_context", sources, timings, top, resp.model,
+                                resp.cached).model_copy(update={"input_attack_score": score})
 
         valid, invalid = parse_citations(text, len(sources))
         if not valid:
-            return self._refuse(question, "no_valid_citations", sources, timings, top, resp.model, resp.cached)
+            return self._refuse(question, "no_valid_citations", sources, timings, top, resp.model,
+                                resp.cached).model_copy(update={"input_attack_score": score})
 
         citations = []
         for n in valid:
@@ -151,11 +197,13 @@ class Answerer:
             question=question,
             answer=strip_invalid_citations(text, invalid),
             refused=False,
+            removed_sentences=removed,
             citations=citations,
             invalid_citations=invalid,
             sources=sources,
             top_score=top,
             model=resp.model,
             llm_cached=resp.cached,
+            input_attack_score=score,
             latency_ms=timings,
         )

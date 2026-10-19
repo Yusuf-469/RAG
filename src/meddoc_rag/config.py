@@ -69,6 +69,14 @@ class Settings(BaseSettings):
     judge_model: str = "qwen/qwen3.8-27b"
     ollama_base_url: str = "http://localhost:11434"
 
+    # Safety: screen user questions for prompt injection / jailbreaks before retrieval.
+    input_guard_enabled: bool = True
+    # 86M, not 22M: measured 22M missed a "DAN" jailbreak (0.027) that 86M caught (0.997).
+    input_guard_model: str = "meta-llama/llama-prompt-guard-2-86m"
+    input_guard_threshold: float = 0.5
+    # If the guard API fails: allow (grounding layers still apply) rather than refuse every question.
+    input_guard_fail_open: bool = True
+
     @property
     def manifest_path(self) -> Path:
         """YAML list of source documents (URL, checksum, license)."""

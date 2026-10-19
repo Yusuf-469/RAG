@@ -61,9 +61,11 @@ class AskResponse(BaseModel):
     confidence: float | None                     # top retrieval score in (0, 1)
     citations: list[CitationOut]
     invalid_citations: list[int]
+    removed_sentences: list[str] = []
     sources: list[SourceOut]
     model: str | None
     latency_ms: dict[str, float]
+    safety_notice: str | None = None
     disclaimer: str
 
 
@@ -92,8 +94,9 @@ def to_response(ans: Answer, server_ms: float) -> AskResponse:
         confidence=ans.top_score,
         citations=[CitationOut(number=c.number, label=c.label, doc_id=c.doc_id, page_start=c.page_start,
                                page_end=c.page_end, section=c.section, score=c.score) for c in ans.citations],
-        invalid_citations=ans.invalid_citations, sources=sources, model=ans.model,
-        latency_ms={**ans.latency_ms, "server_total": server_ms}, disclaimer=ans.disclaimer,
+        invalid_citations=ans.invalid_citations, removed_sentences=ans.removed_sentences, sources=sources, model=ans.model,
+        latency_ms={**ans.latency_ms, "server_total": server_ms}, safety_notice=ans.safety_notice,
+        disclaimer=ans.disclaimer,
     )
 
 
@@ -169,8 +172,10 @@ def create_app(answerer_factory: Callable[[], Answerer] = _default_answerer) -> 
         request.app.state.tracker.record(resp.latency_ms, ans.refused, ans.llm_cached)
         log.info("ask", extra={"fields": {**fields, "refused": ans.refused, "refusal_reason": ans.refusal_reason,
                                           "top_score": ans.top_score, "citations": len(ans.citations),
-                                          "invalid_citations": len(ans.invalid_citations), "model": ans.model,
-                                          "llm_cached": ans.llm_cached,
+                                          "invalid_citations": len(ans.invalid_citations),
+                                          "removed_sentences": len(ans.removed_sentences), "model": ans.model,
+                                          "llm_cached": ans.llm_cached, "input_attack_score": ans.input_attack_score,
+                                          "safety_notice": ans.safety_notice is not None,
                                           "latency_ms": {k: round(v, 1) for k, v in resp.latency_ms.items()}}})
         return resp
 
