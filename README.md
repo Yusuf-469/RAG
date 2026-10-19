@@ -23,7 +23,7 @@ contain the answer, and every design choice is backed by a measured evaluation.
 ## Contents
 [Architecture](#architecture) · [Quickstart](#quickstart) · [Evaluation](#evaluation) ·
 [Safety](#safety) · [Design decisions](#design-decisions) · [Corpus](#corpus) ·
-[Limitations](#limitations) · [Future work](#future-work) · [Project structure](#project-structure)
+[Limitations](#limitations) · [Future work](#future-work) · [Project structure](#project-structure) · [License](#license)
 
 ## Architecture
 
@@ -244,3 +244,13 @@ scripts/         download, build chunks/indexes, CLI
 tests/           108 tests (fakes for models, LLMs and HTTP)
 data/manifest.yaml  sources, licences, checksums
 ```
+
+## License
+
+Code: [MIT](LICENSE) © 2026 Yusuf-469.
+
+- **Dependencies keep their own licences.** Notably PyMuPDF is AGPL-3.0: anyone distributing or
+  hosting a product built on this code must meet AGPL obligations for the combined work.
+- **The guideline documents are not part of this repository** and are not covered by the MIT
+  licence. They are downloaded from their publishers: WHO documents under CC BY-NC-SA 3.0 IGO
+  (non-commercial), US government documents in the public domain. See [`data/manifest.yaml`](data/manifest.yaml).
