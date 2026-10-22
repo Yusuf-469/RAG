@@ -11,8 +11,11 @@ Secrets (app settings -> Secrets):
     MEDDOC_INDEX_REPO = "yusuf469/meddoc-rag-index"    # optional override
 """
 
+import logging
 import os
 import runpy
+import socket
+import sys
 import threading
 import time
 from pathlib import Path
@@ -35,12 +38,26 @@ try:
 except FileNotFoundError:   # no secrets file: running locally with .env
     pass
 
-API_URL = "http://127.0.0.1:8000"
-os.environ["MEDDOC_API_URL"] = API_URL
+class _ErrorLog(logging.Handler):
+    """Keeps uvicorn's error records, so a failed startup can be shown instead of a bare timeout."""
+
+    def __init__(self) -> None:
+        super().__init__(logging.ERROR)
+        self.messages: list[str] = []
+
+    def emit(self, record: logging.LogRecord) -> None:
+        self.messages.append(self.format(record))
+
+
+def _free_port() -> int:
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
 
 
 @st.cache_resource(show_spinner="Starting up: downloading the index and loading models (about a minute)...")
-def start_api() -> None:
+def start_api() -> str:
+    """Start the API once per app process; returns its URL."""
     from huggingface_hub import snapshot_download
     from huggingface_hub.errors import RepositoryNotFoundError
 
@@ -62,17 +79,32 @@ def start_api() -> None:
 
     import uvicorn
 
-    server = uvicorn.Server(uvicorn.Config("app.api:app", host="127.0.0.1", port=8000, log_level="warning"))
-    threading.Thread(target=server.run, daemon=True).start()
-    for _ in range(180):
+    from app.api import app   # imported here so import errors surface with their real traceback
+
+    # A free port, not a fixed one: the host may already use 8000, and a failed bind only logs.
+    port = _free_port()
+    url = f"http://127.0.0.1:{port}"
+    config = uvicorn.Config(app, host="127.0.0.1", port=port, log_level="info")
+    errors = _ErrorLog()   # attached after Config, which reconfigures uvicorn's loggers
+    logging.getLogger("uvicorn.error").addHandler(errors)
+    server = uvicorn.Server(config)
+    thread = threading.Thread(target=server.run, daemon=True)
+    thread.start()
+    deadline = time.monotonic() + 600   # model downloads on a cold, shared CPU can be slow
+    while time.monotonic() < deadline:
         try:
-            if requests.get(f"{API_URL}/health", timeout=2).ok:
-                return
+            if requests.get(f"{url}/health", timeout=2).ok:
+                return url
         except requests.RequestException:
             pass
+        if not thread.is_alive():
+            break
         time.sleep(1)
-    raise RuntimeError("API did not become healthy within 3 minutes")
+    detail = "\n".join(errors.messages) or ("server thread exited" if not thread.is_alive() else "timed out after 10 minutes")
+    st.error(f"The API failed to start (Python {sys.version.split()[0]}):")
+    st.code(detail)
+    st.stop()
 
 
-start_api()
+os.environ["MEDDOC_API_URL"] = start_api()
 runpy.run_path(str(Path(__file__).parent / "app" / "ui.py"), run_name="__main__")
