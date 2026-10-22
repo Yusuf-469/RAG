@@ -35,13 +35,23 @@ os.environ["MEDDOC_API_URL"] = API_URL
 @st.cache_resource(show_spinner="Starting up: downloading the index and loading models (about a minute)...")
 def start_api() -> None:
     from huggingface_hub import snapshot_download
+    from huggingface_hub.errors import RepositoryNotFoundError
 
     from meddoc_rag.config import PROJECT_ROOT, settings
 
     index_dir = settings.index_dir(settings.chunk_strategy)
     if not (index_dir / "index.faiss").exists():
-        snapshot_download(os.environ.get("MEDDOC_INDEX_REPO", "yusuf469/meddoc-rag-index"),
-                          repo_type="dataset", local_dir=index_dir)
+        repo = os.environ.get("MEDDOC_INDEX_REPO", "yusuf469/meddoc-rag-index")
+        token = os.environ.get("HF_TOKEN", "").strip()
+        if not token:
+            st.error("HF_TOKEN is missing from the app's secrets, so the private index cannot be downloaded.")
+            st.stop()
+        try:
+            snapshot_download(repo, repo_type="dataset", local_dir=index_dir, token=token)
+        except RepositoryNotFoundError:
+            st.error(f"The HF_TOKEN in the app's secrets cannot read the private dataset `{repo}`. "
+                     "Check the token is valid and has read access to it.")
+            st.stop()
 
     import uvicorn
 
