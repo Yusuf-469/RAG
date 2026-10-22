@@ -21,10 +21,17 @@ import requests
 import streamlit as st
 
 # Secrets must be in the environment before meddoc_rag reads its settings at import time.
-try:
-    for key, value in st.secrets.items():
+def _export_secrets(section) -> None:
+    """Copy string secrets to env vars, including ones placed under a [section] header."""
+    for key, value in section.items():
         if isinstance(value, str):
-            os.environ.setdefault(key, value)
+            os.environ.setdefault(key.upper(), value.strip())
+        elif hasattr(value, "items"):
+            _export_secrets(value)
+
+
+try:
+    _export_secrets(st.secrets)
 except FileNotFoundError:   # no secrets file: running locally with .env
     pass
 
